@@ -35,7 +35,6 @@ header{
 .logo{
     font-size:25px;
     font-weight:800;
-    letter-spacing:.5px;
 }
 
 .tagline{
@@ -111,7 +110,6 @@ button{
 .secondary{
     background:#e7edf5;
     color:#172033;
-    margin-top:15px;
 }
 
 .dark .secondary{
@@ -128,22 +126,26 @@ button{
     display:none;
 }
 
+/* RESULT HEADER */
+
 .result-header{
     text-align:center;
     border-bottom:2px solid #e5e7eb;
     padding-bottom:18px;
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 
 .result-header h1{
     font-size:24px;
 }
 
+/* STUDENT INFORMATION */
+
 .student-info{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:12px;
-    margin-bottom:20px;
+    margin-bottom:22px;
 }
 
 .info-box{
@@ -163,6 +165,39 @@ button{
     margin-bottom:4px;
 }
 
+/* BEST SIX BOX — MSCE ONLY */
+
+.best-six{
+    text-align:center;
+    border-radius:18px;
+    padding:25px 15px;
+    margin:20px 0 25px;
+    background:#1261a8;
+    color:white;
+    box-shadow:0 8px 20px #0002;
+}
+
+.best-six-title{
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.best-six-number{
+    font-size:48px;
+    font-weight:900;
+    margin-top:7px;
+}
+
+.best-six-subtitle{
+    font-size:13px;
+    opacity:.9;
+    margin-top:4px;
+}
+
+/* TABLE */
+
 table{
     width:100%;
     border-collapse:collapse;
@@ -178,10 +213,6 @@ th,td{
 th{
     background:#1261a8;
     color:white;
-}
-
-.dark th{
-    background:#174d80;
 }
 
 .grade{
@@ -231,10 +262,10 @@ footer{
     border-radius:50%;
     background:#172033;
     color:white;
-    box-shadow:0 5px 15px #0003;
 }
 
 @media(max-width:600px){
+
     .student-info{
         grid-template-columns:1fr;
     }
@@ -251,9 +282,14 @@ footer{
         padding:10px 7px;
         font-size:13px;
     }
+
+    .best-six-number{
+        font-size:42px;
+    }
 }
 
 @media print{
+
     header,
     .search-card,
     .actions,
@@ -283,77 +319,129 @@ footer{
 
 <div class="container">
 
-    <!-- SEARCH -->
-    <div class="card search-card">
+<!-- SEARCH -->
 
-        <h2>Check Examination Results</h2>
+<div class="card search-card">
 
-        <label for="examType">Examination</label>
-        <select id="examType">
-            <option value="">Select examination</option>
-            <option value="PSLCE">PSLCE</option>
-            <option value="JCE">JCE</option>
-            <option value="MSCE">MSCE</option>
-        </select>
+    <h2>Check Examination Results</h2>
 
-        <label for="examNumber">Examination Number</label>
-        <input
-            id="examNumber"
-            type="text"
-            placeholder="Example: JCE2026001"
-            autocomplete="off"
-        >
+    <label for="examType">Examination</label>
 
-        <label for="dob">Date of Birth</label>
-        <input id="dob" type="date">
+    <select id="examType">
 
-        <button class="primary" onclick="checkResults()">
-            CHECK RESULTS
-        </button>
+        <option value="">Select examination</option>
 
-        <div id="error" class="error"></div>
-    </div>
+        <option value="PSLCE">PSLCE</option>
 
-    <!-- RESULT -->
-    <div id="resultArea"></div>
+        <option value="JCE">JCE</option>
+
+        <option value="MSCE">MSCE</option>
+
+    </select>
+
+
+    <label for="examNumber">
+        Examination Number
+    </label>
+
+    <input
+        id="examNumber"
+        type="text"
+        placeholder="Example: MSCE2026001"
+        autocomplete="off"
+    >
+
+
+    <label for="dob">
+        Date of Birth
+    </label>
+
+    <input
+        id="dob"
+        type="date"
+    >
+
+
+    <button
+        class="primary"
+        onclick="checkResults()"
+    >
+        CHECK RESULTS
+    </button>
+
+
+    <div
+        id="error"
+        class="error"
+    ></div>
 
 </div>
 
-<button class="toggle" onclick="toggleDark()">☾</button>
+
+<!-- RESULTS -->
+
+<div id="resultArea"></div>
+
+</div>
+
+
+<button
+    class="toggle"
+    onclick="toggleDark()"
+>
+☾
+</button>
+
 
 <footer>
-    <strong>© 2026 ABDURASHEEDRAJAB WORLD PRO</strong><br><br>
-    Designed & Developed by AbdurasheedRajab<br><br>
-    <small>
-        DEMO / PROTOTYPE ONLY — This portal uses fictional sample
-        examination data and is not an official MANEB system.
-    </small>
+
+<strong>
+© 2026 ABDURASHEEDRAJAB WORLD PRO
+</strong>
+
+<br><br>
+
+Designed & Developed by AbdurasheedRajab
+
+<br><br>
+
+<small>
+DEMO / PROTOTYPE ONLY — This portal uses fictional sample
+examination data and is not an official MANEB system.
+</small>
+
 </footer>
+
 
 <script>
 
-/* ==========================================================
-   SUBJECT CATALOGUE
-   ========================================================== */
+/* =========================================================
+   PSLCE
+   ========================================================= */
 
-/* PSLCE — exact subjects requested */
 const PSLCE_SUBJECTS = [
+
     "Arts and Life Skills",
+
     "Chichewa",
+
     "English",
+
     "Mathematics",
+
     "Primary Science",
+
     "Social and Religious Studies"
+
 ].sort();
 
 
-/*
-   JCE SUBJECT CATALOGUE
+/* =========================================================
+   JCE
+   ========================================================= */
 
-   Keep this list separate so that an authorized administrator
-   can update it if MANEB changes the official subject catalogue.
-*/
 const JCE_SUBJECTS = [
+
     "Agriculture",
     "Bible Knowledge",
     "Biology",
@@ -370,17 +458,16 @@ const JCE_SUBJECTS = [
     "Physical Education",
     "Physics",
     "Social Studies"
+
 ].sort();
 
 
-/*
-   MSCE SUBJECT CATALOGUE
+/* =========================================================
+   MSCE
+   ========================================================= */
 
-   This is a configurable prototype catalogue.
-   For production, the authorized MANEB subject catalogue
-   should replace this list.
-*/
 const MSCE_SUBJECTS = [
+
     "Accounting",
     "Agriculture",
     "Bible Knowledge",
@@ -406,169 +493,212 @@ const MSCE_SUBJECTS = [
     "Social Studies",
     "Technical Drawing",
     "Woodwork"
+
 ].sort();
 
 
-/* ==========================================================
+/* =========================================================
    FICTIONAL DEMO CANDIDATES
-   ========================================================== */
+   ========================================================= */
 
 const candidates = [
 
-    {
-        examType:"PSLCE",
-        examNumber:"PSLCE2026001",
-        dob:"2012-08-10",
-        name:"Peter Mbewe",
+/* ---------------- PSLCE ---------------- */
 
-        subjects:[
-            {
-                name:"Arts and Life Skills",
-                mark:82,
-                grade:"A"
-            },
-            {
-                name:"Chichewa",
-                mark:76,
-                grade:"B"
-            },
-            {
-                name:"English",
-                mark:88,
-                grade:"A"
-            },
-            {
-                name:"Mathematics",
-                mark:91,
-                grade:"A"
-            },
-            {
-                name:"Primary Science",
-                mark:85,
-                grade:"A"
-            },
-            {
-                name:"Social and Religious Studies",
-                mark:79,
-                grade:"B"
-            }
-        ]
-    },
+{
+    examType:"PSLCE",
 
+    examNumber:"PSLCE2026001",
 
-    {
-        examType:"JCE",
-        examNumber:"JCE2026001",
-        dob:"2010-05-15",
-        name:"John Banda",
+    dob:"2012-08-10",
 
-        /*
-           Notice Agriculture is NOT included.
-           Therefore it will NOT appear on John's results.
-        */
-        subjects:[
-            {
-                name:"Biology",
-                mark:78,
-                grade:"B"
-            },
-            {
-                name:"Chichewa",
-                mark:81,
-                grade:"A"
-            },
-            {
-                name:"English",
-                mark:86,
-                grade:"A"
-            },
-            {
-                name:"Geography",
-                mark:74,
-                grade:"B"
-            },
-            {
-                name:"History",
-                mark:69,
-                grade:"C"
-            },
-            {
-                name:"Mathematics",
-                mark:91,
-                grade:"A"
-            },
-            {
-                name:"Social Studies",
-                mark:80,
-                grade:"A"
-            }
-        ]
-    },
+    name:"Peter Mbewe",
+
+    subjects:[
+
+        {
+            name:"Arts and Life Skills",
+            mark:82,
+            grade:"A"
+        },
+
+        {
+            name:"Chichewa",
+            mark:76,
+            grade:"B"
+        },
+
+        {
+            name:"English",
+            mark:88,
+            grade:"A"
+        },
+
+        {
+            name:"Mathematics",
+            mark:91,
+            grade:"A"
+        },
+
+        {
+            name:"Primary Science",
+            mark:85,
+            grade:"A"
+        },
+
+        {
+            name:"Social and Religious Studies",
+            mark:79,
+            grade:"B"
+        }
+
+    ]
+},
 
 
-    {
-        examType:"MSCE",
-        examNumber:"MSCE2026001",
-        dob:"2008-03-20",
-        name:"Mary Phiri",
+/* ---------------- JCE ---------------- */
 
-        /*
-           Mary has a different subject combination.
-           Only these subjects will appear.
-        */
-        subjects:[
-            {
-                name:"Biology",
-                mark:88,
-                grade:"A"
-            },
-            {
-                name:"Chichewa",
-                mark:76,
-                grade:"B"
-            },
-            {
-                name:"Chemistry",
-                mark:82,
-                grade:"A"
-            },
-            {
-                name:"English",
-                mark:90,
-                grade:"A"
-            },
-            {
-                name:"Geography",
-                mark:79,
-                grade:"B"
-            },
-            {
-                name:"Mathematics",
-                mark:94,
-                grade:"A"
-            },
-            {
-                name:"Physics",
-                mark:73,
-                grade:"B"
-            }
-        ]
-    }
+{
+    examType:"JCE",
+
+    examNumber:"JCE2026001",
+
+    dob:"2010-05-15",
+
+    name:"John Banda",
+
+    subjects:[
+
+        {
+            name:"Biology",
+            mark:78,
+            grade:"B"
+        },
+
+        {
+            name:"Chichewa",
+            mark:81,
+            grade:"A"
+        },
+
+        {
+            name:"English",
+            mark:86,
+            grade:"A"
+        },
+
+        {
+            name:"Geography",
+            mark:74,
+            grade:"B"
+        },
+
+        {
+            name:"History",
+            mark:69,
+            grade:"C"
+        },
+
+        {
+            name:"Mathematics",
+            mark:91,
+            grade:"A"
+        },
+
+        {
+            name:"Social Studies",
+            mark:80,
+            grade:"A"
+        }
+
+    ]
+},
+
+
+/* ---------------- MSCE ---------------- */
+
+{
+    examType:"MSCE",
+
+    examNumber:"MSCE2026001",
+
+    dob:"2008-03-20",
+
+    name:"Mary Phiri",
+
+    /*
+       MSCE uses POINTS.
+
+       All subjects are displayed.
+
+       The system automatically chooses
+       the SIX LOWEST POINT VALUES as the
+       best six for this prototype.
+    */
+
+    subjects:[
+
+        {
+            name:"Biology",
+            points:4
+        },
+
+        {
+            name:"Chichewa",
+            points:5
+        },
+
+        {
+            name:"Chemistry",
+            points:6
+        },
+
+        {
+            name:"English",
+            points:3
+        },
+
+        {
+            name:"Geography",
+            points:7
+        },
+
+        {
+            name:"History",
+            points:8
+        },
+
+        {
+            name:"Mathematics",
+            points:2
+        },
+
+        {
+            name:"Physics",
+            points:4
+        }
+
+    ]
+}
 
 ];
 
 
-/* ==========================================================
+/* =========================================================
    CHECK RESULTS
-   ========================================================== */
+   ========================================================= */
 
 function checkResults(){
 
     const examType =
-        document.getElementById("examType").value.trim();
+        document.getElementById("examType").value;
 
     const examNumber =
-        document.getElementById("examNumber").value.trim().toUpperCase();
+        document
+        .getElementById("examNumber")
+        .value
+        .trim()
+        .toUpperCase();
 
     const dob =
         document.getElementById("dob").value;
@@ -581,32 +711,45 @@ function checkResults(){
 
 
     error.style.display = "none";
+
     resultArea.innerHTML = "";
 
 
-    if(!examType || !examNumber || !dob){
+    if(
+        !examType ||
+        !examNumber ||
+        !dob
+    ){
 
-        showError("Please enter the examination, examination number and date of birth.");
+        showError(
+            "Please enter the examination, examination number and date of birth."
+        );
 
         return;
     }
 
 
-    const candidate = candidates.find(function(c){
+    const candidate =
+        candidates.find(function(c){
 
-        return (
-            c.examType === examType &&
-            c.examNumber.toUpperCase() === examNumber &&
-            c.dob === dob
-        );
+            return (
 
-    });
+                c.examType === examType &&
+
+                c.examNumber.toUpperCase()
+                === examNumber &&
+
+                c.dob === dob
+
+            );
+
+        });
 
 
     if(!candidate){
 
         showError(
-            "No matching result was found. Please check your examination type, examination number and date of birth."
+            "No matching result was found. Please check your details."
         );
 
         return;
@@ -617,9 +760,9 @@ function checkResults(){
 }
 
 
-/* ==========================================================
+/* =========================================================
    DISPLAY RESULTS
-   ========================================================== */
+   ========================================================= */
 
 function displayResults(candidate){
 
@@ -628,17 +771,42 @@ function displayResults(candidate){
 
 
     /*
-       Sort only the subjects that the candidate actually took.
-       Subjects not present in candidate.subjects are never shown.
+       Sort subjects alphabetically.
     */
 
     const subjects =
-        [...candidate.subjects].sort(function(a,b){
+        [...candidate.subjects]
+        .sort(function(a,b){
 
             return a.name.localeCompare(b.name);
 
         });
 
+
+    /*
+       MSCE
+       =========================================
+       SPECIAL FORMAT ONLY FOR MSCE
+       =========================================
+    */
+
+    if(candidate.examType === "MSCE"){
+
+        displayMSCEResult(
+            candidate,
+            subjects
+        );
+
+        return;
+    }
+
+
+    /*
+       PSLCE + JCE
+       =========================================
+       OLD FORMAT IS KEPT
+       =========================================
+    */
 
     let total = 0;
 
@@ -651,7 +819,7 @@ function displayResults(candidate){
 
 
     const average =
-        subjects.length > 0
+        subjects.length
         ? (total / subjects.length).toFixed(1)
         : "0";
 
@@ -662,11 +830,23 @@ function displayResults(candidate){
     subjects.forEach(function(subject){
 
         rows += `
-            <tr>
-                <td>${escapeHTML(subject.name)}</td>
-                <td>${subject.mark}</td>
-                <td class="grade">${escapeHTML(subject.grade)}</td>
-            </tr>
+
+        <tr>
+
+            <td>
+                ${escapeHTML(subject.name)}
+            </td>
+
+            <td>
+                ${subject.mark}
+            </td>
+
+            <td class="grade">
+                ${escapeHTML(subject.grade)}
+            </td>
+
+        </tr>
+
         `;
 
     });
@@ -674,113 +854,396 @@ function displayResults(candidate){
 
     resultArea.innerHTML = `
 
-        <div class="card">
+    <div class="card">
 
-            <div class="result-header">
+        <div class="result-header">
 
-                <h1>EXAMINATION RESULT</h1>
+            <h1>EXAMINATION RESULT</h1>
 
-                <p>
+            <p>
+                ${escapeHTML(candidate.examType)}
+            </p>
+
+        </div>
+
+
+        <div class="student-info">
+
+            <div class="info-box">
+
+                <span>Candidate Name</span>
+
+                <strong>
+                    ${escapeHTML(candidate.name)}
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>Examination Number</span>
+
+                <strong>
+                    ${escapeHTML(candidate.examNumber)}
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>Date of Birth</span>
+
+                <strong>
+                    ${formatDate(candidate.dob)}
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>Examination</span>
+
+                <strong>
                     ${escapeHTML(candidate.examType)}
-                </p>
-
-            </div>
-
-
-            <div class="student-info">
-
-                <div class="info-box">
-                    <span>Candidate Name</span>
-                    <strong>${escapeHTML(candidate.name)}</strong>
-                </div>
-
-                <div class="info-box">
-                    <span>Examination Number</span>
-                    <strong>${escapeHTML(candidate.examNumber)}</strong>
-                </div>
-
-                <div class="info-box">
-                    <span>Date of Birth</span>
-                    <strong>${formatDate(candidate.dob)}</strong>
-                </div>
-
-                <div class="info-box">
-                    <span>Examination</span>
-                    <strong>${escapeHTML(candidate.examType)}</strong>
-                </div>
-
-            </div>
-
-
-            <h3>Subjects and Results</h3>
-
-            <table>
-
-                <thead>
-
-                    <tr>
-                        <th>Subject</th>
-                        <th>Mark</th>
-                        <th>Grade</th>
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    ${rows}
-
-                </tbody>
-
-            </table>
-
-
-            <div class="summary">
-
-                <strong>Number of Subjects:</strong>
-                ${subjects.length}
-
-                <br><br>
-
-                <strong>Total Marks:</strong>
-                ${total}
-
-                <br><br>
-
-                <strong>Average:</strong>
-                ${average}%
-
-            </div>
-
-
-            <div class="actions">
-
-                <button class="primary"
-                    onclick="window.print()">
-                    PRINT RESULT
-                </button>
-
-                <button class="secondary"
-                    onclick="newSearch()">
-                    NEW SEARCH
-                </button>
+                </strong>
 
             </div>
 
         </div>
 
+
+        <h3>Subjects and Results</h3>
+
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Subject</th>
+
+                    <th>Mark</th>
+
+                    <th>Grade</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                ${rows}
+
+            </tbody>
+
+        </table>
+
+
+        <div class="summary">
+
+            <strong>
+                Number of Subjects:
+            </strong>
+
+            ${subjects.length}
+
+            <br><br>
+
+            <strong>
+                Total Marks:
+            </strong>
+
+            ${total}
+
+            <br><br>
+
+            <strong>
+                Average:
+            </strong>
+
+            ${average}%
+
+        </div>
+
+
+        <div class="actions">
+
+            <button
+                class="primary"
+                onclick="window.print()"
+            >
+                PRINT RESULT
+            </button>
+
+
+            <button
+                class="secondary"
+                onclick="newSearch()"
+            >
+                NEW SEARCH
+            </button>
+
+        </div>
+
+    </div>
+
     `;
-
-
-    resultArea.scrollIntoView({
-        behavior:"smooth"
-    });
 }
 
 
-/* ==========================================================
+/* =========================================================
+   MSCE RESULT
+   ========================================================= */
+
+function displayMSCEResult(
+    candidate,
+    subjects
+){
+
+    /*
+       IMPORTANT:
+
+       Lower points are treated as better
+       for this prototype.
+
+       The six lowest point values are selected.
+    */
+
+    const ranked =
+        [...subjects].sort(function(a,b){
+
+            return Number(a.points)
+                - Number(b.points);
+
+        });
+
+
+    const bestSix =
+        ranked.slice(
+            0,
+            Math.min(6, ranked.length)
+        );
+
+
+    let bestSixTotal = 0;
+
+
+    bestSix.forEach(function(subject){
+
+        bestSixTotal += Number(subject.points);
+
+    });
+
+
+    let rows = "";
+
+
+    subjects.forEach(function(subject){
+
+        rows += `
+
+        <tr>
+
+            <td>
+                ${escapeHTML(subject.name)}
+            </td>
+
+            <td class="grade">
+                ${subject.points}
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+
+    document.getElementById("resultArea").innerHTML = `
+
+    <div class="card">
+
+        <div class="result-header">
+
+            <h1>EXAMINATION RESULT</h1>
+
+            <p>MSCE</p>
+
+        </div>
+
+
+        <div class="student-info">
+
+            <div class="info-box">
+
+                <span>Candidate Name</span>
+
+                <strong>
+                    ${escapeHTML(candidate.name)}
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>Examination Number</span>
+
+                <strong>
+                    ${escapeHTML(candidate.examNumber)}
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>Date of Birth</span>
+
+                <strong>
+                    ${formatDate(candidate.dob)}
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>Examination</span>
+
+                <strong>MSCE</strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             BEST SIX BOX
+             ===================================== -->
+
+        <div class="best-six">
+
+            <div class="best-six-title">
+
+                Best Six Subject Total
+
+            </div>
+
+
+            <div class="best-six-number">
+
+                ${bestSixTotal}
+
+            </div>
+
+
+            <div class="best-six-subtitle">
+
+                POINTS
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             ALL SUBJECTS
+             ===================================== -->
+
+        <h3>
+            All Subjects
+        </h3>
+
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Subject
+                    </th>
+
+                    <th>
+                        Points
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                ${rows}
+
+            </tbody>
+
+        </table>
+
+
+        <div class="summary">
+
+            <strong>
+                Subjects Taken:
+            </strong>
+
+            ${subjects.length}
+
+            <br><br>
+
+            <strong>
+                Subjects Used For Best Six:
+            </strong>
+
+            ${bestSix.length}
+
+            <br><br>
+
+            <strong>
+                Best Six Total:
+            </strong>
+
+            ${bestSixTotal} Points
+
+        </div>
+
+
+        <div class="actions">
+
+            <button
+                class="primary"
+                onclick="window.print()"
+            >
+                PRINT RESULT
+            </button>
+
+
+            <button
+                class="secondary"
+                onclick="newSearch()"
+            >
+                NEW SEARCH
+            </button>
+
+        </div>
+
+    </div>
+
+    `;
+}
+
+
+/* =========================================================
    HELPERS
-   ========================================================== */
+   ========================================================= */
 
 function showError(message){
 
@@ -788,23 +1251,39 @@ function showError(message){
         document.getElementById("error");
 
     error.textContent = message;
+
     error.style.display = "block";
 }
 
 
 function newSearch(){
 
-    document.getElementById("resultArea").innerHTML = "";
+    document.getElementById(
+        "resultArea"
+    ).innerHTML = "";
 
-    document.getElementById("examNumber").value = "";
 
-    document.getElementById("dob").value = "";
+    document.getElementById(
+        "examNumber"
+    ).value = "";
 
-    document.getElementById("examType").value = "";
+
+    document.getElementById(
+        "dob"
+    ).value = "";
+
+
+    document.getElementById(
+        "examType"
+    ).value = "";
+
 
     window.scrollTo({
+
         top:0,
+
         behavior:"smooth"
+
     });
 }
 
@@ -814,43 +1293,59 @@ function formatDate(dateString){
     const parts =
         dateString.split("-");
 
-    return parts[2] + "/" + parts[1] + "/" + parts[0];
+    return (
+
+        parts[2] +
+        "/" +
+        parts[1] +
+        "/" +
+        parts[0]
+
+    );
 }
 
 
-/*
-   Prevent candidate names/subjects from being interpreted
-   as HTML when the system eventually uses external data.
-*/
 function escapeHTML(value){
 
     return String(value)
+
         .replace(/&/g,"&amp;")
+
         .replace(/</g,"&lt;")
+
         .replace(/>/g,"&gt;")
+
         .replace(/"/g,"&quot;")
+
         .replace(/'/g,"&#039;");
 }
 
 
-/* ==========================================================
+/* =========================================================
    DARK MODE
-   ========================================================== */
+   ========================================================= */
 
 function toggleDark(){
 
     document.body.classList.toggle("dark");
 
+
     localStorage.setItem(
+
         "darkMode",
+
         document.body.classList.contains("dark")
             ? "on"
             : "off"
+
     );
 }
 
 
-if(localStorage.getItem("darkMode") === "on"){
+if(
+    localStorage.getItem("darkMode")
+    === "on"
+){
 
     document.body.classList.add("dark");
 
