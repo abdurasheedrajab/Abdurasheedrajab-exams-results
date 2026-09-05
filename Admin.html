@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdurasheed Results — Admin</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f3f6fa;
+    color: #172033;
+}
+
+/* LOGIN */
+#loginPage {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(135deg,#071d49,#0b5ed7);
+}
+
+.login-box {
+    width: 100%;
+    max-width: 420px;
+    background: white;
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.25);
+}
+
+.logo {
+    text-align: center;
+    font-size: 34px;
+    font-weight: bold;
+    color: #0b5ed7;
+    margin-bottom: 8px;
+}
+
+.login-box h2 {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 25px;
+}
+
+input, select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ccd3dd;
+    border-radius: 9px;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+button {
+    border: none;
+    border-radius: 9px;
+    padding: 13px 18px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.login-btn {
+    width: 100%;
+    background: #0b5ed7;
+    color: white;
+    font-size: 16px;
+}
+
+.error {
+    color: #d62828;
+    text-align: center;
+    margin-top: 12px;
+    display: none;
+}
+
+/* ADMIN */
+#adminPage {
+    display: none;
+}
+
+header {
+    background: #071d49;
+    color: white;
+    padding: 18px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header h1 {
+    font-size: 22px;
+}
+
+.logout {
+    background: #e63946;
+    color: white;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 25px;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.card {
+    background: white;
+    padding: 22px;
+    border-radius: 14px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.07);
+}
+
+.card h3 {
+    color: #687386;
+    font-size: 14px;
+}
+
+.number {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 8px;
+    color: #0b5ed7;
+}
+
+.panel {
+    background: white;
+    border-radius: 14px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.07);
+}
+
+.panel h2 {
+    margin-bottom: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 15px;
+}
+
+.full {
+    grid-column: 1/-1;
+}
+
+.save {
+    background: #198754;
+    color: white;
+}
+
+.clear {
+    background: #6c757d;
+    color: white;
+    margin-left: 8px;
+}
+
+.search {
+    margin-bottom: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 13px;
+    border-bottom: 1px solid #e5e8ed;
+    text-align: left;
+}
+
+th {
+    background: #f0f4f8;
+}
+
+.action-edit {
+    background: #ffc107;
+    margin-right: 5px;
+}
+
+.action-delete {
+    background: #dc3545;
+    color: white;
+}
+
+.empty {
+    text-align: center;
+    color: #777;
+    padding: 25px;
+}
+
+@media(max-width:700px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full {
+        grid-column: auto;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    header {
+        padding: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN PAGE -->
+<section id="loginPage">
+
+    <div class="login-box">
+
+        <div class="logo">AR</div>
+
+        <h2>Admin Portal</h2>
+
+        <p class="subtitle">
+            Abdurasheed Results Management
+        </p>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter admin password"
+        >
+
+        <button class="login-btn" onclick="login()">
+            LOGIN
+        </button>
+
+        <p id="error" class="error">
+            Incorrect password.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ADMIN PAGE -->
+<section id="adminPage">
+
+<header>
+
+    <h1>Abdurasheed Results — Admin</h1>
+
+    <button class="logout" onclick="logout()">
+        Logout
+    </button>
+
+</header>
+
+
+<div class="container">
+
+    <!-- DASHBOARD -->
+
+    <div class="dashboard">
+
+        <div class="card">
+            <h3>Total Students</h3>
+            <div class="number" id="totalStudents">0</div>
+        </div>
+
+        <div class="card">
+            <h3>JCE Results</h3>
+            <div class="number" id="jceStudents">0</div>
+        </div>
+
+        <div class="card">
+            <h3>MSCE Results</h3>
+            <div class="number" id="msceStudents">0</div>
+        </div>
+
+    </div>
+
+
+    <!-- ADD / EDIT STUDENT -->
+
+    <div class="panel">
+
+        <h2 id="formTitle">Add Student Result</h2>
+
+        <input type="hidden" id="editIndex">
+
+        <div class="form-grid">
+
+            <div>
+                <label>Student Name</label>
+                <input
+                    id="studentName"
+                    type="text"
+                    placeholder="Enter student name"
+                >
+            </div>
+
+            <div>
+                <label>Candidate Number</label>
+                <input
+                    id="candidateNumber"
+                    type="text"
+                    placeholder="Example: 123456"
+                >
+            </div>
+
+            <div>
+                <label>Exam</label>
+
+                <select id="exam">
+                    <option value="JCE">JCE</option>
+                    <option value="MSCE">MSCE</option>
+                    <option value="PSLCE">PSLCE</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Year</label>
+
+                <input
+                    id="year"
+                    type="number"
+                    value="2026"
+                >
+            </div>
+
+            <div class="full">
+                <label>Results / Grades</label>
+
+                <input
+                    id="results"
+                    type="text"
+                    placeholder="Example: English A, Mathematics B, Science B"
+                >
+            </div>
+
+        </div>
+
+        <button class="save" onclick="saveStudent()">
+            Save Result
+        </button>
+
+        <button class="clear" onclick="clearForm()">
+            Clear
+        </button>
+
+    </div>
+
+
+    <!-- STUDENT DATABASE -->
+
+    <div class="panel">
+
+        <h2>Student Results Database</h2>
+
+        <input
+            class="search"
+            id="search"
+            type="text"
+            placeholder="Search by name or candidate number..."
+            oninput="displayStudents()"
+        >
+
+        <div style="overflow-x:auto">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Name</th>
+                        <th>Candidate No.</th>
+                        <th>Exam</th>
+                        <th>Year</th>
+                        <th>Results</th>
+                        <th>Actions</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="studentTable">
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<script>
+
+/* =========================
+   ADMIN PASSWORD
+========================= */
+
+const ADMIN_PASSWORD = "r1s2s3h4";
+
+
+/* =========================
+   LOGIN
+========================= */
+
+function login() {
+
+    const password =
+        document.getElementById("password").value;
+
+    if(password === ADMIN_PASSWORD) {
+
+        sessionStorage.setItem(
+            "adminLoggedIn",
+            "true"
+        );
+
+        showAdmin();
+
+    } else {
+
+        document.getElementById("error").style.display =
+            "block";
+
+    }
+
+}
+
+
+/* =========================
+   SHOW ADMIN
+========================= */
+
+function showAdmin() {
+
+    document.getElementById("loginPage").style.display =
+        "none";
+
+    document.getElementById("adminPage").style.display =
+        "block";
+
+    displayStudents();
+    updateDashboard();
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logout() {
+
+    sessionStorage.removeItem("adminLoggedIn");
+
+    location.reload();
+
+}
+
+
+/* =========================
+   DATABASE
+========================= */
+
+function getStudents() {
+
+    return JSON.parse(
+        localStorage.getItem("abdurasheedResults")
+    ) || [];
+
+}
+
+
+function saveStudents(students) {
+
+    localStorage.setItem(
+        "abdurasheedResults",
+        JSON.stringify(students)
+    );
+
+}
+
+
+/* =========================
+   SAVE STUDENT
+========================= */
+
+function saveStudent() {
+
+    const name =
+        document.getElementById("studentName").value.trim();
+
+    const candidate =
+        document.getElementById("candidateNumber").value.trim();
+
+    const exam =
+        document.getElementById("exam").value;
+
+    const year =
+        document.getElementById("year").value;
+
+    const results =
+        document.getElementById("results").value.trim();
+
+    const editIndex =
+        document.getElementById("editIndex").value;
+
+
+    if(!name || !candidate || !results) {
+
+        alert("Please fill in all required fields.");
+
+        return;
+
+    }
+
+
+    let students = getStudents();
+
+
+    const student = {
+
+        name: name,
+
+        candidateNumber: candidate,
+
+        exam: exam,
+
+        year: year,
+
+        results: results
+
+    };
+
+
+    /* EDIT */
+
+    if(editIndex !== "") {
+
+        students[Number(editIndex)] = student;
+
+        alert("Student result updated successfully.");
+
+    }
+
+    /* ADD */
+
+    else {
+
+        students.push(student);
+
+        alert("Student result added successfully.");
+
+    }
+
+
+    saveStudents(students);
+
+    clearForm();
+
+    displayStudents();
+
+    updateDashboard();
+
+}
+
+
+/* =========================
+   DISPLAY STUDENTS
+========================= */
+
+function displayStudents() {
+
+    const table =
+        document.getElementById("studentTable");
+
+    const search =
+        document.getElementById("search").value
+        .toLowerCase();
+
+    const students = getStudents();
+
+
+    const filtered =
+        students.filter(student =>
+
+            student.name.toLowerCase().includes(search) ||
+
+            student.candidateNumber
+                .toLowerCase()
+                .includes(search)
+
+        );
+
+
+    table.innerHTML = "";
+
+
+    if(filtered.length === 0) {
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="6" class="empty">
+                    No student results found.
+                </td>
+            </tr>
+        `;
+
+        return;
+
+    }
+
+
+    filtered.forEach(student => {
+
+        const realIndex =
+            students.indexOf(student);
+
+        const row = document.createElement("tr");
+
+
+        row.innerHTML = `
+
+            <td>${escapeHTML(student.name)}</td>
+
+            <td>${escapeHTML(student.candidateNumber)}</td>
+
+            <td>${escapeHTML(student.exam)}</td>
+
+            <td>${escapeHTML(student.year)}</td>
+
+            <td>${escapeHTML(student.results)}</td>
+
+            <td>
+
+                <button
+                    class="action-edit"
+                    onclick="editStudent(${realIndex})"
+                >
+                    Edit
+                </button>
+
+                <button
+                    class="action-delete"
+                    onclick="deleteStudent(${realIndex})"
+                >
+                    Delete
+                </button>
+
+            </td>
+
+        `;
+
+
+        table.appendChild(row);
+
+    });
+
+}
+
+
+/* =========================
+   EDIT STUDENT
+========================= */
+
+function editStudent(index) {
+
+    const students = getStudents();
+
+    const student = students[index];
+
+
+    document.getElementById("studentName").value =
+        student.name;
+
+    document.getElementById("candidateNumber").value =
+        student.candidateNumber;
+
+    document.getElementById("exam").value =
+        student.exam;
+
+    document.getElementById("year").value =
+        student.year;
+
+    document.getElementById("results").value =
+        student.results;
+
+    document.getElementById("editIndex").value =
+        index;
+
+
+    document.getElementById("formTitle").innerText =
+        "Edit Student Result";
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =========================
+   DELETE STUDENT
+========================= */
+
+function deleteStudent(index) {
+
+    if(!confirm(
+        "Are you sure you want to delete this result?"
+    )) {
+        return;
+    }
+
+
+    const students = getStudents();
+
+    students.splice(index,1);
+
+    saveStudents(students);
+
+    displayStudents();
+
+    updateDashboard();
+
+}
+
+
+/* =========================
+   CLEAR FORM
+========================= */
+
+function clearForm() {
+
+    document.getElementById("studentName").value = "";
+
+    document.getElementById("candidateNumber").value = "";
+
+    document.getElementById("exam").value = "JCE";
+
+    document.getElementById("year").value = "2026";
+
+    document.getElementById("results").value = "";
+
+    document.getElementById("editIndex").value = "";
+
+    document.getElementById("formTitle").innerText =
+        "Add Student Result";
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function updateDashboard() {
+
+    const students = getStudents();
+
+
+    document.getElementById("totalStudents").innerText =
+        students.length;
+
+
+    document.getElementById("jceStudents").innerText =
+        students.filter(
+            s => s.exam === "JCE"
+        ).length;
+
+
+    document.getElementById("msceStudents").innerText =
+        students.filter(
+            s => s.exam === "MSCE"
+        ).length;
+
+}
+
+
+/* =========================
+   SECURITY HELPER
+========================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================
+   CHECK LOGIN
+========================= */
+
+if(
+    sessionStorage.getItem("adminLoggedIn")
+    === "true"
+) {
+
+    showAdmin();
+
+}
+
+</script>
+
+</body>
+          </html>
