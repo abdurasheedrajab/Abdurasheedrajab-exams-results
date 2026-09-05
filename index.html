@@ -4,10 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ABDURASHEEDRAJAB WORLD PRO - Examination Results</title>
+<title>The Malawi National Examinations Board</title>
 
 <style>
-
 * {
     box-sizing: border-box;
 }
@@ -21,13 +20,13 @@ body {
     transition: 0.3s;
 }
 
-/* ================= HEADER ================= */
+/* ================= TOP HEADER ================= */
 
 .header {
     background: linear-gradient(135deg, #09244d, #1769aa);
     color: white;
     text-align: center;
-    padding: 38px 20px 42px;
+    padding: 38px 18px;
 }
 
 .header h1 {
@@ -36,17 +35,12 @@ body {
     font-weight: 800;
 }
 
-.header p {
-    margin: 12px 0 0;
-    font-size: 18px;
-}
-
 /* ================= MAIN ================= */
 
 .container {
     width: 92%;
     max-width: 720px;
-    margin: 55px auto 0;
+    margin: 45px auto 0;
 }
 
 /* ================= CARD ================= */
@@ -54,39 +48,24 @@ body {
 .card {
     background: white;
     border-radius: 30px;
-    padding: 35px 30px 38px;
+    padding: 32px 30px 38px;
     box-shadow: 0 10px 35px rgba(0,0,0,0.08);
     transition: 0.3s;
 }
 
-/* ================= MANEB LOGO ================= */
+/* ================= LOGO ================= */
 
 .logo-box {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
-
-/*
-   In light mode the original logo is displayed normally.
-*/
 
 .maneb-logo {
-    display: block;
-    width: 180px;
-    height: 180px;
+    width: 190px;
+    height: 190px;
     object-fit: contain;
-    margin: 0 auto;
-    transition: 0.3s;
-}
-
-/*
-   DARK MODE:
-   Multiply blending makes the white areas of the logo
-   disappear into the dark background instead of remaining white.
-*/
-
-body.dark .maneb-logo {
-    mix-blend-mode: multiply;
+    display: block;
+    margin: auto;
 }
 
 /* ================= TITLE ================= */
@@ -94,7 +73,7 @@ body.dark .maneb-logo {
 .card h2 {
     text-align: center;
     margin: 0 0 35px;
-    font-size: 34px;
+    font-size: 32px;
     font-weight: 800;
 }
 
@@ -109,8 +88,7 @@ label {
 
 /* ================= INPUTS ================= */
 
-input,
-select {
+input {
     width: 100%;
     height: 70px;
     border: 1px solid #ccd3dc;
@@ -121,11 +99,9 @@ select {
     color: #17233b;
     outline: none;
     margin-bottom: 26px;
-    transition: 0.3s;
 }
 
-input:focus,
-select:focus {
+input:focus {
     border: 2px solid #1769aa;
 }
 
@@ -141,7 +117,6 @@ button {
     font-size: 22px;
     font-weight: 800;
     cursor: pointer;
-    margin-top: 5px;
 }
 
 button:active {
@@ -181,7 +156,7 @@ button:active {
 }
 
 .result-header p {
-    margin: 7px 0;
+    margin: 8px 0;
     font-size: 17px;
 }
 
@@ -193,7 +168,6 @@ button:active {
     background: white;
     border-radius: 18px;
     overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.07);
 }
 
 .result-table th {
@@ -201,13 +175,11 @@ button:active {
     color: white;
     padding: 17px 14px;
     text-align: left;
-    font-size: 17px;
 }
 
 .result-table td {
     padding: 17px 14px;
     border-bottom: 1px solid #e3e7ed;
-    font-size: 17px;
 }
 
 /* ================= MSCE BEST SIX ================= */
@@ -228,7 +200,6 @@ button:active {
 }
 
 .best-six strong {
-    display: block;
     font-size: 42px;
 }
 
@@ -239,14 +210,14 @@ button:active {
     background: #17233b;
 }
 
-/* ================= SIMPLE FOOTER ================= */
+/* ================= BOTTOM ================= */
 
 .footer {
     text-align: center;
-    margin: 55px 20px 35px;
+    margin: 50px 20px 35px;
     color: #68758a;
     font-size: 15px;
-    line-height: 1.8;
+    line-height: 1.9;
 }
 
 .footer strong {
@@ -257,12 +228,12 @@ button:active {
 
 body.dark {
     background: #080b10;
-    color: #f1f4fa;
+    color: white;
 }
 
 body.dark .card {
     background: #15181d;
-    color: #f1f4fa;
+    color: white;
 }
 
 body.dark .result-header {
@@ -279,8 +250,7 @@ body.dark .result-table td {
     border-bottom-color: #30343b;
 }
 
-body.dark input,
-body.dark select {
+body.dark input {
     background: #24272c;
     color: white;
     border-color: #454a53;
@@ -323,29 +293,26 @@ body.dark .footer strong {
 @media (max-width: 600px) {
 
     .header {
-        padding: 35px 15px 38px;
+        padding: 35px 15px;
     }
 
     .header h1 {
-        font-size: 25px;
-    }
-
-    .header p {
-        font-size: 17px;
+        font-size: 24px;
+        line-height: 1.3;
     }
 
     .container {
         width: 94%;
-        margin-top: 35px;
+        margin-top: 30px;
     }
 
     .card {
-        padding: 28px 20px 30px;
+        padding: 28px 20px 32px;
     }
 
     .maneb-logo {
-        width: 145px;
-        height: 145px;
+        width: 155px;
+        height: 155px;
     }
 
     .card h2 {
@@ -356,8 +323,7 @@ body.dark .footer strong {
         font-size: 19px;
     }
 
-    input,
-    select {
+    input {
         height: 65px;
         font-size: 18px;
     }
@@ -366,18 +332,7 @@ body.dark .footer strong {
         height: 68px;
         font-size: 20px;
     }
-
-    .result-table th,
-    .result-table td {
-        padding: 14px 10px;
-        font-size: 15px;
-    }
-
-    .best-six strong {
-        font-size: 36px;
-    }
 }
-
 </style>
 </head>
 
@@ -387,9 +342,9 @@ body.dark .footer strong {
 
 <header class="header">
 
-    <h1>ABDURASHEEDRAJAB WORLD PRO</h1>
-
-    <p>Modern Examination Results Portal</p>
+    <h1>
+        THE MALAWI NATIONAL EXAMINATIONS BOARD
+    </h1>
 
 </header>
 
@@ -405,45 +360,21 @@ body.dark .footer strong {
         <div class="logo-box">
 
             <img
+                id="manebLogo"
                 src="1788618691958.jpg"
-                alt="Malawi National Examinations Board logo"
+                alt="Malawi National Examinations Board Logo"
                 class="maneb-logo"
             >
 
         </div>
 
 
-        <h2>Check Examination Results</h2>
+        <h2>
+            Check Examination Results
+        </h2>
 
 
-        <!-- EXAMINATION -->
-
-        <label for="examType">
-            Examination
-        </label>
-
-        <select id="examType">
-
-            <option value="">
-                Select examination
-            </option>
-
-            <option value="PSLCE">
-                PSLCE
-            </option>
-
-            <option value="JCE">
-                JCE
-            </option>
-
-            <option value="MSCE">
-                MSCE
-            </option>
-
-        </select>
-
-
-        <!-- EXAM NUMBER -->
+        <!-- EXAMINATION NUMBER -->
 
         <label for="examNumber">
             Examination Number
@@ -452,7 +383,7 @@ body.dark .footer strong {
         <input
             type="text"
             id="examNumber"
-            placeholder="Example: MSCE2026001"
+            placeholder="Enter examination number"
         >
 
 
@@ -468,14 +399,17 @@ body.dark .footer strong {
         >
 
 
-        <!-- CHECK BUTTON -->
+        <!-- CHECK RESULTS -->
 
         <button onclick="checkResults()">
             CHECK RESULTS
         </button>
 
 
-        <div id="message" class="message"></div>
+        <div
+            id="message"
+            class="message">
+        </div>
 
     </section>
 
@@ -487,25 +421,25 @@ body.dark .footer strong {
 </main>
 
 
-<!-- ================= SIMPLE FOOTER ================= -->
+<!-- ================= BOTTOM ================= -->
 
 <footer class="footer">
 
-    <strong>© AbdurasheedRajab</strong>
+    <strong>© 2026 MANEB</strong>
 
     <br>
 
-    Powered / Developed by AbdurasheedRajab
+    Powered / Developed by Abdurasheed Rajab
 
 </footer>
 
 
-<!-- ================= DARK MODE BUTTON ================= -->
+<!-- ================= DARK MODE ================= -->
 
 <div
     class="theme-button"
-    onclick="toggleDarkMode()"
     id="themeButton"
+    onclick="toggleDarkMode()"
 >
     ☾
 </div>
@@ -514,7 +448,7 @@ body.dark .footer strong {
 <script>
 
 /* =====================================================
-   DEMO CANDIDATES
+   DEMO RESULTS
    ===================================================== */
 
 const candidates = {
@@ -708,9 +642,6 @@ const candidates = {
 
 function checkResults() {
 
-    const examType =
-        document.getElementById("examType").value;
-
     const examNumber =
         document
         .getElementById("examNumber")
@@ -735,10 +666,10 @@ function checkResults() {
     results.innerHTML = "";
 
 
-    if (!examType || !examNumber || !dob) {
+    if (!examNumber || !dob) {
 
         message.textContent =
-            "Please enter all required information.";
+            "Please enter your examination number and date of birth.";
 
         message.style.display = "block";
 
@@ -753,18 +684,7 @@ function checkResults() {
     if (!candidate) {
 
         message.textContent =
-            "No demo result found for this examination number.";
-
-        message.style.display = "block";
-
-        return;
-    }
-
-
-    if (candidate.examType !== examType) {
-
-        message.textContent =
-            "The examination type does not match.";
+            "No result found for this examination number.";
 
         message.style.display = "block";
 
@@ -775,23 +695,13 @@ function checkResults() {
     if (candidate.dob !== dob) {
 
         message.textContent =
-            "The date of birth does not match the demo record.";
+            "The date of birth does not match the record.";
 
         message.style.display = "block";
 
         return;
     }
 
-
-    displayResults(candidate);
-}
-
-
-/* =====================================================
-   DISPLAY RESULTS
-   ===================================================== */
-
-function displayResults(candidate) {
 
     if (candidate.examType === "MSCE") {
 
@@ -829,23 +739,11 @@ function displayStandard(candidate) {
     subjects.forEach(subject => {
 
         rows += `
-
             <tr>
-
-                <td>
-                    ${subject.name}
-                </td>
-
-                <td>
-                    ${subject.mark}
-                </td>
-
-                <td>
-                    ${subject.grade}
-                </td>
-
+                <td>${subject.name}</td>
+                <td>${subject.mark}</td>
+                <td>${subject.grade}</td>
             </tr>
-
         `;
 
     });
@@ -880,29 +778,15 @@ function displayStandard(candidate) {
         <table class="result-table">
 
             <thead>
-
                 <tr>
-
-                    <th>
-                        Subject
-                    </th>
-
-                    <th>
-                        Mark
-                    </th>
-
-                    <th>
-                        Grade
-                    </th>
-
+                    <th>Subject</th>
+                    <th>Mark</th>
+                    <th>Grade</th>
                 </tr>
-
             </thead>
 
             <tbody>
-
                 ${rows}
-
             </tbody>
 
         </table>
@@ -940,16 +824,6 @@ function displayMSCE(candidate) {
         );
 
 
-    /*
-       DEMO BEST SIX CALCULATION
-
-       Lowest six points are selected.
-
-       This is prototype logic and should
-       be replaced with the officially
-       authorized MANEB calculation.
-    */
-
     const sortedPoints =
         subjects
         .map(subject => subject.points)
@@ -974,21 +848,12 @@ function displayMSCE(candidate) {
     subjects.forEach(subject => {
 
         rows += `
-
             <tr>
-
+                <td>${subject.name}</td>
                 <td>
-                    ${subject.name}
+                    <strong>${subject.points}</strong>
                 </td>
-
-                <td>
-                    <strong>
-                        ${subject.points}
-                    </strong>
-                </td>
-
             </tr>
-
         `;
 
     });
@@ -1036,25 +901,14 @@ function displayMSCE(candidate) {
         <table class="result-table">
 
             <thead>
-
                 <tr>
-
-                    <th>
-                        Subject
-                    </th>
-
-                    <th>
-                        Points
-                    </th>
-
+                    <th>Subject</th>
+                    <th>Points</th>
                 </tr>
-
             </thead>
 
             <tbody>
-
                 ${rows}
-
             </tbody>
 
         </table>
@@ -1076,7 +930,7 @@ function displayMSCE(candidate) {
 
 
 /* =====================================================
-   DATE FORMAT
+   DATE
    ===================================================== */
 
 function formatDate(dateString) {
@@ -1084,26 +938,22 @@ function formatDate(dateString) {
     const date =
         new Date(dateString + "T00:00:00");
 
-
     const day =
         String(date.getDate()).padStart(2, "0");
-
 
     const month =
         String(date.getMonth() + 1)
         .padStart(2, "0");
 
-
     const year =
         date.getFullYear();
-
 
     return `${day}/${month}/${year}`;
 }
 
 
 /* =====================================================
-   GO BACK
+   BACK
    ===================================================== */
 
 function goBack() {
@@ -1111,11 +961,9 @@ function goBack() {
     const results =
         document.getElementById("results");
 
-
     results.style.display = "none";
 
     results.innerHTML = "";
-
 
     window.scrollTo({
         top: 0,
@@ -1126,25 +974,40 @@ function goBack() {
 
 
 /* =====================================================
-   DARK MODE
+   DARK MODE + LOGO SWITCH
    ===================================================== */
 
 function toggleDarkMode() {
 
     document.body.classList.toggle("dark");
 
+    const dark =
+        document.body.classList.contains("dark");
+
+    const logo =
+        document.getElementById("manebLogo");
 
     const button =
         document.getElementById("themeButton");
 
 
-    if (
-        document.body.classList.contains("dark")
-    ) {
+    if (dark) {
+
+        /*
+           DARK THEME LOGO
+        */
+
+        logo.src = "maneb-logo-dark.png";
 
         button.textContent = "☀";
 
     } else {
+
+        /*
+           LIGHT THEME LOGO
+        */
+
+        logo.src = "1788618691958.jpg";
 
         button.textContent = "☾";
 
