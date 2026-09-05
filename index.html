@@ -3,308 +3,336 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ABDURASHEEDRAJAB WORLD PRO | Examination Results</title>
+
+<title>ABDURASHEEDRAJAB WORLD PRO - Examination Results</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:Arial,Helvetica,sans-serif;
+* {
+    box-sizing: border-box;
 }
 
-body{
-    background:#f3f6fb;
-    color:#172033;
-    min-height:100vh;
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f1f5fa;
+    color: #17233b;
+    min-height: 100vh;
 }
 
-body.dark{
-    background:#111827;
-    color:#f3f4f6;
+/* HEADER */
+.header {
+    background: linear-gradient(135deg, #09244d, #1769aa);
+    color: white;
+    text-align: center;
+    padding: 38px 20px 42px;
 }
 
-header{
-    background:linear-gradient(135deg,#071a3d,#1261a8);
-    color:white;
-    padding:25px 18px;
-    text-align:center;
-    box-shadow:0 4px 15px #0002;
+.header h1 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 800;
 }
 
-.logo{
-    font-size:25px;
-    font-weight:800;
+.header p {
+    margin: 12px 0 0;
+    font-size: 18px;
+    opacity: 0.95;
 }
 
-.tagline{
-    margin-top:7px;
-    opacity:.9;
-    font-size:14px;
+/* MAIN */
+.container {
+    width: 92%;
+    max-width: 720px;
+    margin: 60px auto 0;
 }
 
-.container{
-    max-width:900px;
-    margin:35px auto;
-    padding:0 15px;
+/* RESULT CARD */
+.card {
+    background: white;
+    border-radius: 30px;
+    padding: 34px 30px 38px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.08);
 }
 
-.card{
-    background:white;
-    border-radius:18px;
-    padding:25px;
-    box-shadow:0 8px 30px #00000012;
-    margin-bottom:22px;
+/* MANEB LOGO */
+.maneb-logo {
+    display: block;
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    margin: 0 auto 22px;
 }
 
-.dark .card{
-    background:#1f2937;
+/* TITLE */
+.card h2 {
+    text-align: center;
+    margin: 0 0 35px;
+    font-size: 34px;
+    font-weight: 800;
 }
 
-h2{
-    margin-bottom:18px;
+/* LABELS */
+label {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 12px;
 }
 
-label{
-    display:block;
-    font-weight:700;
-    margin:15px 0 7px;
+/* INPUTS */
+input,
+select {
+    width: 100%;
+    height: 70px;
+    border: 1px solid #ccd3dc;
+    border-radius: 18px;
+    padding: 0 20px;
+    font-size: 19px;
+    background: white;
+    color: #17233b;
+    outline: none;
+    margin-bottom: 26px;
 }
 
-input,select{
-    width:100%;
-    padding:14px;
-    border:1px solid #ccd3df;
-    border-radius:10px;
-    font-size:16px;
-    background:white;
+input:focus,
+select:focus {
+    border: 2px solid #1769aa;
 }
 
-.dark input,
-.dark select{
-    background:#374151;
-    color:white;
-    border-color:#4b5563;
+/* BUTTON */
+button {
+    width: 100%;
+    height: 72px;
+    border: none;
+    border-radius: 18px;
+    background: #1769aa;
+    color: white;
+    font-size: 22px;
+    font-weight: 800;
+    cursor: pointer;
+    margin-top: 5px;
 }
 
-button{
-    border:0;
-    border-radius:10px;
-    padding:14px 20px;
-    font-weight:700;
-    font-size:15px;
-    cursor:pointer;
+button:active {
+    transform: scale(0.98);
 }
 
-.primary{
-    width:100%;
-    margin-top:20px;
-    background:#1261a8;
-    color:white;
-}
-
-.primary:hover{
-    background:#0d4d88;
-}
-
-.secondary{
-    background:#e7edf5;
-    color:#172033;
-}
-
-.dark .secondary{
-    background:#374151;
-    color:white;
-}
-
-.error{
-    background:#fee2e2;
-    color:#991b1b;
-    padding:13px;
-    border-radius:10px;
-    margin-top:15px;
-    display:none;
+/* RESULTS */
+#results {
+    display: none;
+    margin-top: 30px;
 }
 
 /* RESULT HEADER */
-
-.result-header{
-    text-align:center;
-    border-bottom:2px solid #e5e7eb;
-    padding-bottom:18px;
-    margin-bottom:20px;
+.result-header {
+    background: white;
+    border-radius: 25px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+    margin-bottom: 20px;
 }
 
-.result-header h1{
-    font-size:24px;
+.result-header h2 {
+    margin: 0 0 15px;
+    font-size: 27px;
 }
 
-/* STUDENT INFORMATION */
-
-.student-info{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin-bottom:22px;
-}
-
-.info-box{
-    background:#f5f7fa;
-    padding:13px;
-    border-radius:10px;
-}
-
-.dark .info-box{
-    background:#374151;
-}
-
-.info-box span{
-    display:block;
-    font-size:12px;
-    opacity:.7;
-    margin-bottom:4px;
-}
-
-/* BEST SIX BOX — MSCE ONLY */
-
-.best-six{
-    text-align:center;
-    border-radius:18px;
-    padding:25px 15px;
-    margin:20px 0 25px;
-    background:#1261a8;
-    color:white;
-    box-shadow:0 8px 20px #0002;
-}
-
-.best-six-title{
-    font-size:14px;
-    font-weight:700;
-    letter-spacing:1px;
-    text-transform:uppercase;
-}
-
-.best-six-number{
-    font-size:48px;
-    font-weight:900;
-    margin-top:7px;
-}
-
-.best-six-subtitle{
-    font-size:13px;
-    opacity:.9;
-    margin-top:4px;
+.result-header p {
+    margin: 7px 0;
+    font-size: 17px;
 }
 
 /* TABLE */
-
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:15px;
+.result-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.07);
 }
 
-th,td{
-    padding:13px 10px;
-    border-bottom:1px solid #e5e7eb;
-    text-align:left;
+.result-table th,
+.result-table td {
+    padding: 17px 14px;
+    border-bottom: 1px solid #e3e7ed;
+    text-align: left;
 }
 
-th{
-    background:#1261a8;
-    color:white;
+.result-table th {
+    background: #1769aa;
+    color: white;
+    font-size: 17px;
 }
 
-.grade{
-    font-weight:800;
+.result-table td {
+    font-size: 17px;
 }
 
-.summary{
-    margin-top:20px;
-    padding:16px;
-    background:#eef6ff;
-    border-radius:12px;
+/* MSCE BEST SIX */
+.best-six {
+    background: linear-gradient(135deg, #09244d, #1769aa);
+    color: white;
+    border-radius: 25px;
+    padding: 28px;
+    text-align: center;
+    margin-bottom: 22px;
 }
 
-.dark .summary{
-    background:#263b50;
+.best-six small {
+    display: block;
+    font-size: 17px;
+    margin-bottom: 8px;
 }
 
-.actions{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top:20px;
+.best-six strong {
+    display: block;
+    font-size: 42px;
 }
 
-.actions button{
-    flex:1;
-    min-width:140px;
+/* BACK BUTTON */
+.back-btn {
+    margin-top: 22px;
+    background: #17233b;
 }
 
-footer{
-    text-align:center;
-    padding:30px 15px;
-    color:#667085;
-    font-size:13px;
+/* MESSAGE */
+.message {
+    margin-top: 20px;
+    padding: 17px;
+    border-radius: 15px;
+    background: #fff3cd;
+    color: #664d03;
+    font-size: 16px;
+    display: none;
 }
 
-.dark footer{
-    color:#aeb8c7;
+/* FOOTER */
+.footer {
+    text-align: center;
+    margin: 70px 20px 40px;
+    color: #68758a;
+    font-size: 16px;
+    line-height: 1.7;
 }
 
-.toggle{
-    position:fixed;
-    right:15px;
-    bottom:15px;
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    background:#172033;
-    color:white;
+.footer strong {
+    color: #17233b;
 }
 
-@media(max-width:600px){
+/* DISCLAIMER */
+.disclaimer {
+    max-width: 700px;
+    margin: 25px auto 0;
+    padding: 15px;
+    border-radius: 12px;
+    background: #fff3cd;
+    color: #665200;
+    font-size: 13px;
+}
 
-    .student-info{
-        grid-template-columns:1fr;
+/* DARK MODE */
+.dark {
+    background: #0d1524;
+    color: white;
+}
+
+.dark .card,
+.dark .result-header,
+.dark .result-table {
+    background: #172236;
+    color: white;
+}
+
+.dark input,
+.dark select {
+    background: #101a2b;
+    color: white;
+    border-color: #39465b;
+}
+
+.dark .footer {
+    color: #aab5c7;
+}
+
+.dark .footer strong {
+    color: white;
+}
+
+/* THEME BUTTON */
+.theme-button {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: #17233b;
+    color: white;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+    cursor: pointer;
+    z-index: 20;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+
+    .header {
+        padding: 34px 15px 38px;
     }
 
-    .card{
-        padding:18px;
+    .header h1 {
+        font-size: 25px;
     }
 
-    .logo{
-        font-size:21px;
+    .header p {
+        font-size: 17px;
     }
 
-    th,td{
-        padding:10px 7px;
-        font-size:13px;
+    .container {
+        width: 94%;
+        margin-top: 35px;
     }
 
-    .best-six-number{
-        font-size:42px;
-    }
-}
-
-@media print{
-
-    header,
-    .search-card,
-    .actions,
-    .toggle,
-    footer{
-        display:none !important;
+    .card {
+        padding: 28px 20px 30px;
+        border-radius: 27px;
     }
 
-    body{
-        background:white;
+    .maneb-logo {
+        width: 145px;
+        height: 145px;
+        margin-bottom: 18px;
     }
 
-    .card{
-        box-shadow:none;
-        border:0;
+    .card h2 {
+        font-size: 29px;
+        margin-bottom: 30px;
+    }
+
+    label {
+        font-size: 19px;
+    }
+
+    input,
+    select {
+        height: 65px;
+        font-size: 18px;
+    }
+
+    button {
+        height: 68px;
+        font-size: 20px;
+    }
+
+    .result-table th,
+    .result-table td {
+        padding: 14px 10px;
+        font-size: 15px;
     }
 }
 </style>
@@ -312,444 +340,238 @@ footer{
 
 <body>
 
-<header>
-    <div class="logo">ABDURASHEEDRAJAB WORLD PRO</div>
-    <div class="tagline">Modern Examination Results Portal</div>
+<!-- HEADER -->
+<header class="header">
+    <h1>ABDURASHEEDRAJAB WORLD PRO</h1>
+    <p>Modern Examination Results Portal</p>
 </header>
 
-<div class="container">
 
-<!-- SEARCH -->
+<!-- MAIN -->
+<main class="container">
 
-<div class="card search-card">
+    <!-- SEARCH CARD -->
+    <section class="card">
 
-    <h2>Check Examination Results</h2>
+        <!-- REAL MANEB LOGO -->
+        <img
+            src="maneb-logo.png"
+            alt="Malawi National Examinations Board logo"
+            class="maneb-logo"
+        >
 
-    <label for="examType">Examination</label>
+        <h2>Check Examination Results</h2>
 
-    <select id="examType">
+        <label for="examType">Examination</label>
 
-        <option value="">Select examination</option>
-
-        <option value="PSLCE">PSLCE</option>
-
-        <option value="JCE">JCE</option>
-
-        <option value="MSCE">MSCE</option>
-
-    </select>
-
-
-    <label for="examNumber">
-        Examination Number
-    </label>
-
-    <input
-        id="examNumber"
-        type="text"
-        placeholder="Example: MSCE2026001"
-        autocomplete="off"
-    >
+        <select id="examType">
+            <option value="">Select examination</option>
+            <option value="PSLCE">PSLCE</option>
+            <option value="JCE">JCE</option>
+            <option value="MSCE">MSCE</option>
+        </select>
 
 
-    <label for="dob">
-        Date of Birth
-    </label>
+        <label for="examNumber">Examination Number</label>
 
-    <input
-        id="dob"
-        type="date"
-    >
-
-
-    <button
-        class="primary"
-        onclick="checkResults()"
-    >
-        CHECK RESULTS
-    </button>
+        <input
+            type="text"
+            id="examNumber"
+            placeholder="Example: MSCE2026001"
+        >
 
 
-    <div
-        id="error"
-        class="error"
-    ></div>
+        <label for="dob">Date of Birth</label>
 
-</div>
-
-
-<!-- RESULTS -->
-
-<div id="resultArea"></div>
-
-</div>
+        <input
+            type="date"
+            id="dob"
+        >
 
 
-<button
-    class="toggle"
-    onclick="toggleDark()"
->
-☾
-</button>
+        <button onclick="checkResults()">
+            CHECK RESULTS
+        </button>
+
+        <div id="message" class="message"></div>
+
+    </section>
 
 
-<footer>
+    <!-- RESULTS -->
+    <section id="results"></section>
 
-<strong>
-© 2026 ABDURASHEEDRAJAB WORLD PRO
-</strong>
-
-<br><br>
+</main>
 
 
+<!-- FOOTER -->
+<footer class="footer">
 
-<br><br>
+    <strong>
+        © 2026 ABDURASHEEDRAJAB WORLD PRO
+    </strong>
 
-<small>
+    <br>
 
-</small>
+    Designed &amp; Developed by AbdurasheedRajab
+
+    <div class="disclaimer">
+        <strong>Prototype / Demo</strong><br>
+        This website is a demonstration project and is not an
+        official MANEB website. Results shown in this prototype
+        are fictional sample data.
+    </div>
 
 </footer>
 
 
+<!-- DARK MODE -->
+<div class="theme-button" onclick="toggleDarkMode()">
+    ☾
+</div>
+
+
 <script>
 
-/* =========================================================
-   PSLCE
-   ========================================================= */
-
-const PSLCE_SUBJECTS = [
-
-    "Arts and Life Skills",
-
-    "Chichewa",
-
-    "English",
-
-    "Mathematics",
-
-    "Primary Science",
-
-    "Social and Religious Studies"
-
-].sort();
-
-
-/* =========================================================
-   JCE
-   ========================================================= */
-
-const JCE_SUBJECTS = [
-
-    "Agriculture",
-    "Bible Knowledge",
-    "Biology",
-    "Business Studies",
-    "Chichewa",
-    "Computer Studies",
-    "English",
-    "French",
-    "Geography",
-    "History",
-    "Home Economics",
-    "Life Skills",
-    "Mathematics",
-    "Physical Education",
-    "Physics",
-    "Social Studies"
-
-].sort();
-
-
-/* =========================================================
-   MSCE
-   ========================================================= */
-
-const MSCE_SUBJECTS = [
-
-    "Accounting",
-    "Agriculture",
-    "Bible Knowledge",
-    "Biology",
-    "Business Studies",
-    "Chichewa",
-    "Chemistry",
-    "Clothing and Textiles",
-    "Computer Studies",
-    "Economics",
-    "English",
-    "French",
-    "Geography",
-    "History",
-    "Home Economics",
-    "Information and Communication Technology",
-    "Life Skills",
-    "Mathematics",
-    "Metalwork",
-    "Physical Education",
-    "Physics",
-    "Social and Life Skills",
-    "Social Studies",
-    "Technical Drawing",
-    "Woodwork"
-
-].sort();
-
-
-/* =========================================================
-   FICTIONAL DEMO CANDIDATES
-   ========================================================= */
-
-const candidates = [
-
-/* ---------------- PSLCE ---------------- */
-
-{
-    examType:"PSLCE",
-
-    examNumber:"PSLCE2026001",
-
-    dob:"2012-08-10",
-
-    name:"Peter Mbewe",
-
-    subjects:[
-
-        {
-            name:"Arts and Life Skills",
-            mark:82,
-            grade:"A"
-        },
-
-        {
-            name:"Chichewa",
-            mark:76,
-            grade:"B"
-        },
-
-        {
-            name:"English",
-            mark:88,
-            grade:"A"
-        },
-
-        {
-            name:"Mathematics",
-            mark:91,
-            grade:"A"
-        },
-
-        {
-            name:"Primary Science",
-            mark:85,
-            grade:"A"
-        },
-
-        {
-            name:"Social and Religious Studies",
-            mark:79,
-            grade:"B"
-        }
-
-    ]
-},
-
-
-/* ---------------- JCE ---------------- */
-
-{
-    examType:"JCE",
-
-    examNumber:"JCE2026001",
-
-    dob:"2010-05-15",
-
-    name:"John Banda",
-
-    subjects:[
-
-        {
-            name:"Biology",
-            mark:78,
-            grade:"B"
-        },
-
-        {
-            name:"Chichewa",
-            mark:81,
-            grade:"A"
-        },
-
-        {
-            name:"English",
-            mark:86,
-            grade:"A"
-        },
-
-        {
-            name:"Geography",
-            mark:74,
-            grade:"B"
-        },
-
-        {
-            name:"History",
-            mark:69,
-            grade:"C"
-        },
-
-        {
-            name:"Mathematics",
-            mark:91,
-            grade:"A"
-        },
-
-        {
-            name:"Social Studies",
-            mark:80,
-            grade:"A"
-        }
-
-    ]
-},
-
-
-/* ---------------- MSCE ---------------- */
-
-{
-    examType:"MSCE",
-
-    examNumber:"MSCE2026001",
-
-    dob:"2008-03-20",
-
-    name:"Mary Phiri",
-
-    /*
-       MSCE uses POINTS.
-
-       All subjects are displayed.
-
-       The system automatically chooses
-       the SIX LOWEST POINT VALUES as the
-       best six for this prototype.
-    */
-
-    subjects:[
-
-        {
-            name:"Biology",
-            points:4
-        },
-
-        {
-            name:"Chichewa",
-            points:5
-        },
-
-        {
-            name:"Chemistry",
-            points:6
-        },
-
-        {
-            name:"English",
-            points:3
-        },
-
-        {
-            name:"Geography",
-            points:7
-        },
-
-        {
-            name:"History",
-            points:8
-        },
-
-        {
-            name:"Mathematics",
-            points:2
-        },
-
-        {
-            name:"Physics",
-            points:4
-        }
-
-    ]
-}
-
-];
-
-
-/* =========================================================
+/* ==========================================
+   FICTIONAL DEMO RESULTS
+   ========================================== */
+
+const candidates = {
+
+    /* PSLCE */
+    "PSLCE2026001": {
+        examType: "PSLCE",
+        name: "John Banda",
+        dob: "2012-05-15",
+
+        subjects: [
+            { name: "Arts and Life Skills", mark: 78, grade: "A" },
+            { name: "Chichewa", mark: 72, grade: "A" },
+            { name: "English", mark: 81, grade: "A" },
+            { name: "Mathematics", mark: 75, grade: "A" },
+            { name: "Primary Science", mark: 69, grade: "B" },
+            { name: "Social and Religious Studies", mark: 73, grade: "A" }
+        ]
+    },
+
+
+    /* JCE */
+    "JCE2026001": {
+        examType: "JCE",
+        name: "Peter Phiri",
+        dob: "2010-08-21",
+
+        subjects: [
+            { name: "Agriculture", mark: 72, grade: "A" },
+            { name: "Biology", mark: 68, grade: "B" },
+            { name: "Chichewa", mark: 75, grade: "A" },
+            { name: "English", mark: 71, grade: "A" },
+            { name: "Geography", mark: 64, grade: "B" },
+            { name: "History", mark: 70, grade: "A" },
+            { name: "Mathematics", mark: 78, grade: "A" },
+            { name: "Physics", mark: 66, grade: "B" },
+            { name: "Social Studies", mark: 73, grade: "A" }
+        ]
+    },
+
+
+    /* MSCE */
+    "MSCE2026001": {
+        examType: "MSCE",
+        name: "Mary Phiri",
+        dob: "2008-03-20",
+
+        /*
+           MSCE deliberately uses POINTS only.
+           There is NO grade field here.
+        */
+        subjects: [
+            { name: "Biology", points: 4 },
+            { name: "Chichewa", points: 5 },
+            { name: "Chemistry", points: 6 },
+            { name: "English", points: 3 },
+            { name: "Geography", points: 7 },
+            { name: "History", points: 8 },
+            { name: "Mathematics", points: 2 },
+            { name: "Physics", points: 4 }
+        ]
+    }
+
+};
+
+
+/* ==========================================
    CHECK RESULTS
-   ========================================================= */
+   ========================================== */
 
-function checkResults(){
+function checkResults() {
 
     const examType =
         document.getElementById("examType").value;
 
     const examNumber =
-        document
-        .getElementById("examNumber")
-        .value
+        document.getElementById("examNumber").value
         .trim()
         .toUpperCase();
 
     const dob =
         document.getElementById("dob").value;
 
-    const error =
-        document.getElementById("error");
+    const message =
+        document.getElementById("message");
 
-    const resultArea =
-        document.getElementById("resultArea");
-
-
-    error.style.display = "none";
-
-    resultArea.innerHTML = "";
+    const results =
+        document.getElementById("results");
 
 
-    if(
-        !examType ||
-        !examNumber ||
-        !dob
-    ){
+    message.style.display = "none";
+    results.style.display = "none";
+    results.innerHTML = "";
 
-        showError(
-            "Please enter the examination, examination number and date of birth."
-        );
+
+    if (!examType || !examNumber || !dob) {
+
+        message.textContent =
+            "Please enter the examination, examination number and date of birth.";
+
+        message.style.display = "block";
 
         return;
     }
 
 
-    const candidate =
-        candidates.find(function(c){
-
-            return (
-
-                c.examType === examType &&
-
-                c.examNumber.toUpperCase()
-                === examNumber &&
-
-                c.dob === dob
-
-            );
-
-        });
+    const candidate = candidates[examNumber];
 
 
-    if(!candidate){
+    if (!candidate) {
 
-        showError(
-            "No matching result was found. Please check your details."
-        );
+        message.textContent =
+            "No demo result was found for this examination number.";
+
+        message.style.display = "block";
+
+        return;
+    }
+
+
+    if (candidate.examType !== examType) {
+
+        message.textContent =
+            "The examination type does not match the examination number.";
+
+        message.style.display = "block";
+
+        return;
+    }
+
+
+    if (candidate.dob !== dob) {
+
+        message.textContent =
+            "The date of birth does not match the demo record.";
+
+        message.style.display = "block";
 
         return;
     }
@@ -759,601 +581,332 @@ function checkResults(){
 }
 
 
-/* =========================================================
+/* ==========================================
    DISPLAY RESULTS
-   ========================================================= */
+   ========================================== */
 
-function displayResults(candidate){
+function displayResults(candidate) {
 
-    const resultArea =
-        document.getElementById("resultArea");
+    const results =
+        document.getElementById("results");
 
-
-    /*
-       Sort subjects alphabetically.
-    */
-
-    const subjects =
-        [...candidate.subjects]
-        .sort(function(a,b){
-
-            return a.name.localeCompare(b.name);
-
-        });
+    results.style.display = "block";
 
 
     /*
-       MSCE
-       =========================================
-       SPECIAL FORMAT ONLY FOR MSCE
-       =========================================
+       MSCE HAS ITS OWN DISPLAY SYSTEM.
+       It does NOT display grades.
     */
 
-    if(candidate.examType === "MSCE"){
+    if (candidate.examType === "MSCE") {
 
-        displayMSCEResult(
-            candidate,
-            subjects
-        );
+        displayMSCE(candidate);
 
         return;
     }
 
 
     /*
-       PSLCE + JCE
-       =========================================
-       OLD FORMAT IS KEPT
-       =========================================
+       PSLCE AND JCE KEEP THE
+       MARK + GRADE FORMAT.
     */
 
-    let total = 0;
+    displayStandard(candidate);
+}
 
 
-    subjects.forEach(function(subject){
+/* ==========================================
+   PSLCE + JCE
+   ========================================== */
 
-        total += Number(subject.mark);
+function displayStandard(candidate) {
 
-    });
+    const results =
+        document.getElementById("results");
 
 
-    const average =
-        subjects.length
-        ? (total / subjects.length).toFixed(1)
-        : "0";
+    const subjects =
+        [...candidate.subjects]
+        .sort((a, b) =>
+            a.name.localeCompare(b.name)
+        );
 
 
     let rows = "";
 
 
-    subjects.forEach(function(subject){
+    subjects.forEach(subject => {
 
         rows += `
-
-        <tr>
-
-            <td>
-                ${escapeHTML(subject.name)}
-            </td>
-
-            <td>
-                ${subject.mark}
-            </td>
-
-            <td class="grade">
-                ${escapeHTML(subject.grade)}
-            </td>
-
-        </tr>
-
+            <tr>
+                <td>${subject.name}</td>
+                <td>${subject.mark}</td>
+                <td>${subject.grade}</td>
+            </tr>
         `;
 
     });
 
 
-    resultArea.innerHTML = `
-
-    <div class="card">
+    results.innerHTML = `
 
         <div class="result-header">
 
-            <h1>EXAMINATION RESULT</h1>
+            <h2>${candidate.examType} Results</h2>
 
             <p>
-                ${escapeHTML(candidate.examType)}
+                <strong>Candidate:</strong>
+                ${candidate.name}
+            </p>
+
+            <p>
+                <strong>Examination Number:</strong>
+                ${candidate.examType === "PSLCE"
+                    ? "PSLCE2026001"
+                    : "JCE2026001"}
+            </p>
+
+            <p>
+                <strong>Date of Birth:</strong>
+                ${formatDate(candidate.dob)}
             </p>
 
         </div>
 
 
-        <div class="student-info">
-
-            <div class="info-box">
-
-                <span>Candidate Name</span>
-
-                <strong>
-                    ${escapeHTML(candidate.name)}
-                </strong>
-
-            </div>
-
-
-            <div class="info-box">
-
-                <span>Examination Number</span>
-
-                <strong>
-                    ${escapeHTML(candidate.examNumber)}
-                </strong>
-
-            </div>
-
-
-            <div class="info-box">
-
-                <span>Date of Birth</span>
-
-                <strong>
-                    ${formatDate(candidate.dob)}
-                </strong>
-
-            </div>
-
-
-            <div class="info-box">
-
-                <span>Examination</span>
-
-                <strong>
-                    ${escapeHTML(candidate.examType)}
-                </strong>
-
-            </div>
-
-        </div>
-
-
-        <h3>Subjects and Results</h3>
-
-
-        <table>
+        <table class="result-table">
 
             <thead>
-
                 <tr>
-
                     <th>Subject</th>
-
                     <th>Mark</th>
-
                     <th>Grade</th>
-
                 </tr>
-
             </thead>
 
-
             <tbody>
-
                 ${rows}
-
             </tbody>
 
         </table>
 
 
-        <div class="summary">
-
-            <strong>
-                Number of Subjects:
-            </strong>
-
-            ${subjects.length}
-
-            <br><br>
-
-            <strong>
-                Total Marks:
-            </strong>
-
-            ${total}
-
-            <br><br>
-
-            <strong>
-                Average:
-            </strong>
-
-            ${average}%
-
-        </div>
-
-
-        <div class="actions">
-
-            <button
-                class="primary"
-                onclick="window.print()"
-            >
-                PRINT RESULT
-            </button>
-
-
-            <button
-                class="secondary"
-                onclick="newSearch()"
-            >
-                NEW SEARCH
-            </button>
-
-        </div>
-
-    </div>
+        <button
+            class="back-btn"
+            onclick="goBack()">
+            CHECK ANOTHER RESULT
+        </button>
 
     `;
 }
 
 
-/* =========================================================
-   MSCE RESULT
-   ========================================================= */
+/* ==========================================
+   MSCE
+   ========================================== */
 
-function displayMSCEResult(
-    candidate,
-    subjects
-){
+function displayMSCE(candidate) {
+
+    const results =
+        document.getElementById("results");
+
 
     /*
-       IMPORTANT:
-
-       Lower points are treated as better
-       for this prototype.
-
-       The six lowest point values are selected.
+       ONLY subjects taken by the learner
+       are displayed.
     */
 
-    const ranked =
-        [...subjects].sort(function(a,b){
-
-            return Number(a.points)
-                - Number(b.points);
-
-        });
-
-
-    const bestSix =
-        ranked.slice(
-            0,
-            Math.min(6, ranked.length)
+    const subjects =
+        [...candidate.subjects]
+        .sort((a, b) =>
+            a.name.localeCompare(b.name)
         );
 
 
-    let bestSixTotal = 0;
+    /*
+       PROTOTYPE BEST SIX CALCULATION:
+       lowest six points are selected.
+       
+       This is demo logic only and should
+       be replaced with the officially
+       authorized MANEB calculation.
+    */
+
+    const sortedPoints =
+        subjects
+        .map(subject => subject.points)
+        .sort((a, b) => a - b);
 
 
-    bestSix.forEach(function(subject){
+    const bestSix =
+        sortedPoints.slice(0, 6);
 
-        bestSixTotal += Number(subject.points);
 
-    });
+    const bestSixTotal =
+        bestSix.reduce(
+            (total, points) => total + points,
+            0
+        );
 
 
     let rows = "";
 
 
-    subjects.forEach(function(subject){
+    subjects.forEach(subject => {
+
+        /*
+           IMPORTANT:
+           MSCE shows ONLY:
+           Subject | Points
+
+           NO GRADES.
+           NO BEST 6 COLUMN.
+        */
 
         rows += `
-
-        <tr>
-
-            <td>
-                ${escapeHTML(subject.name)}
-            </td>
-
-            <td class="grade">
-                ${subject.points}
-            </td>
-
-        </tr>
-
+            <tr>
+                <td>${subject.name}</td>
+                <td><strong>${subject.points}</strong></td>
+            </tr>
         `;
 
     });
 
 
-    document.getElementById("resultArea").innerHTML = `
-
-    <div class="card">
+    results.innerHTML = `
 
         <div class="result-header">
 
-            <h1>EXAMINATION RESULT</h1>
+            <h2>MSCE Results</h2>
 
-            <p>MSCE</p>
+            <p>
+                <strong>Candidate:</strong>
+                ${candidate.name}
+            </p>
 
-        </div>
+            <p>
+                <strong>Examination Number:</strong>
+                MSCE2026001
+            </p>
 
-
-        <div class="student-info">
-
-            <div class="info-box">
-
-                <span>Candidate Name</span>
-
-                <strong>
-                    ${escapeHTML(candidate.name)}
-                </strong>
-
-            </div>
-
-
-            <div class="info-box">
-
-                <span>Examination Number</span>
-
-                <strong>
-                    ${escapeHTML(candidate.examNumber)}
-                </strong>
-
-            </div>
-
-
-            <div class="info-box">
-
-                <span>Date of Birth</span>
-
-                <strong>
-                    ${formatDate(candidate.dob)}
-                </strong>
-
-            </div>
-
-
-            <div class="info-box">
-
-                <span>Examination</span>
-
-                <strong>MSCE</strong>
-
-            </div>
+            <p>
+                <strong>Date of Birth:</strong>
+                ${formatDate(candidate.dob)}
+            </p>
 
         </div>
 
 
-        <!-- =====================================
-             BEST SIX BOX
-             ===================================== -->
+        <!-- BEST SIX BOX -->
 
         <div class="best-six">
 
-            <div class="best-six-title">
+            <small>
+                BEST SIX SUBJECT TOTAL
+            </small>
 
-                Best Six Subject Total
-
-            </div>
-
-
-            <div class="best-six-number">
-
-                ${bestSixTotal}
-
-            </div>
-
-
-            <div class="best-six-subtitle">
-
-                POINTS
-
-            </div>
+            <strong>
+                ${bestSixTotal} POINTS
+            </strong>
 
         </div>
 
 
-        <!-- =====================================
-             ALL SUBJECTS
-             ===================================== -->
+        <!-- MSCE SUBJECT TABLE -->
 
-        <h3>
-            All Subjects
-        </h3>
-
-
-        <table>
+        <table class="result-table">
 
             <thead>
-
                 <tr>
-
-                    <th>
-                        Subject
-                    </th>
-
-                    <th>
-                        Points
-                    </th>
-
+                    <th>Subject</th>
+                    <th>Points</th>
                 </tr>
-
             </thead>
 
-
             <tbody>
-
                 ${rows}
-
             </tbody>
 
         </table>
 
 
-        <div class="summary">
-
-            <strong>
-                Subjects Taken:
-            </strong>
-
-            ${subjects.length}
-
-            <br><br>
-
-            <strong>
-                Subjects Used For Best Six:
-            </strong>
-
-            ${bestSix.length}
-
-            <br><br>
-
-            <strong>
-                Best Six Total:
-            </strong>
-
-            ${bestSixTotal} Points
-
-        </div>
-
-
-        <div class="actions">
-
-            <button
-                class="primary"
-                onclick="window.print()"
-            >
-                PRINT RESULT
-            </button>
-
-
-            <button
-                class="secondary"
-                onclick="newSearch()"
-            >
-                NEW SEARCH
-            </button>
-
-        </div>
-
-    </div>
+        <button
+            class="back-btn"
+            onclick="goBack()">
+            CHECK ANOTHER RESULT
+        </button>
 
     `;
 }
 
 
-/* =========================================================
-   HELPERS
-   ========================================================= */
+/* ==========================================
+   DATE FORMAT
+   ========================================== */
 
-function showError(message){
+function formatDate(dateString) {
 
-    const error =
-        document.getElementById("error");
+    const date =
+        new Date(dateString + "T00:00:00");
 
-    error.textContent = message;
 
-    error.style.display = "block";
+    const day =
+        String(date.getDate()).padStart(2, "0");
+
+    const month =
+        String(date.getMonth() + 1).padStart(2, "0");
+
+    const year =
+        date.getFullYear();
+
+
+    return `${day}/${month}/${year}`;
 }
 
 
-function newSearch(){
+/* ==========================================
+   GO BACK
+   ========================================== */
 
-    document.getElementById(
-        "resultArea"
-    ).innerHTML = "";
+function goBack() {
 
+    document.getElementById("results").style.display =
+        "none";
 
-    document.getElementById(
-        "examNumber"
-    ).value = "";
-
-
-    document.getElementById(
-        "dob"
-    ).value = "";
-
-
-    document.getElementById(
-        "examType"
-    ).value = "";
-
+    document.getElementById("results").innerHTML =
+        "";
 
     window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
+        top: 0,
+        behavior: "smooth"
     });
 }
 
 
-function formatDate(dateString){
-
-    const parts =
-        dateString.split("-");
-
-    return (
-
-        parts[2] +
-        "/" +
-        parts[1] +
-        "/" +
-        parts[0]
-
-    );
-}
-
-
-function escapeHTML(value){
-
-    return String(value)
-
-        .replace(/&/g,"&amp;")
-
-        .replace(/</g,"&lt;")
-
-        .replace(/>/g,"&gt;")
-
-        .replace(/"/g,"&quot;")
-
-        .replace(/'/g,"&#039;");
-}
-
-
-/* =========================================================
+/* ==========================================
    DARK MODE
-   ========================================================= */
+   ========================================== */
 
-function toggleDark(){
+function toggleDarkMode() {
 
     document.body.classList.toggle("dark");
 
-
-    localStorage.setItem(
-
-        "darkMode",
-
-        document.body.classList.contains("dark")
-            ? "on"
-            : "off"
-
-    );
-}
+    const button =
+        document.querySelector(".theme-button");
 
 
-if(
-    localStorage.getItem("darkMode")
-    === "on"
-){
+    if (document.body.classList.contains("dark")) {
 
-    document.body.classList.add("dark");
+        button.textContent = "☀";
 
+    } else {
+
+        button.textContent = "☾";
+
+    }
 }
 
 </script>
 
 </body>
-</html>
-
-
-
+    </html>
