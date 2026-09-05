@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ABDURASHEEDRAJAB WORLD EXAMS- Examination Results</title>
+<title>ABDURASHEEDRAJAB WORLD PRO - Examination Results</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -17,9 +18,11 @@ body {
     background: #f1f5fa;
     color: #17233b;
     min-height: 100vh;
+    transition: 0.3s;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
+
 .header {
     background: linear-gradient(135deg, #09244d, #1769aa);
     color: white;
@@ -36,34 +39,58 @@ body {
 .header p {
     margin: 12px 0 0;
     font-size: 18px;
-    opacity: 0.95;
 }
 
-/* MAIN */
+/* ================= MAIN ================= */
+
 .container {
     width: 92%;
     max-width: 720px;
-    margin: 60px auto 0;
+    margin: 55px auto 0;
 }
 
-/* RESULT CARD */
+/* ================= CARD ================= */
+
 .card {
     background: white;
     border-radius: 30px;
-    padding: 34px 30px 38px;
+    padding: 35px 30px 38px;
     box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+    transition: 0.3s;
 }
 
-/* MANEB LOGO */
+/* ================= MANEB LOGO ================= */
+
+.logo-box {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/*
+   In light mode the original logo is displayed normally.
+*/
+
 .maneb-logo {
     display: block;
     width: 180px;
     height: 180px;
     object-fit: contain;
-    margin: 0 auto 22px;
+    margin: 0 auto;
+    transition: 0.3s;
 }
 
-/* TITLE */
+/*
+   DARK MODE:
+   Multiply blending makes the white areas of the logo
+   disappear into the dark background instead of remaining white.
+*/
+
+body.dark .maneb-logo {
+    mix-blend-mode: multiply;
+}
+
+/* ================= TITLE ================= */
+
 .card h2 {
     text-align: center;
     margin: 0 0 35px;
@@ -71,15 +98,17 @@ body {
     font-weight: 800;
 }
 
-/* LABELS */
+/* ================= LABELS ================= */
+
 label {
     display: block;
     font-size: 20px;
     font-weight: 700;
-    margin: 0 0 12px;
+    margin-bottom: 12px;
 }
 
-/* INPUTS */
+/* ================= INPUTS ================= */
+
 input,
 select {
     width: 100%;
@@ -92,6 +121,7 @@ select {
     color: #17233b;
     outline: none;
     margin-bottom: 26px;
+    transition: 0.3s;
 }
 
 input:focus,
@@ -99,7 +129,8 @@ select:focus {
     border: 2px solid #1769aa;
 }
 
-/* BUTTON */
+/* ================= BUTTON ================= */
+
 button {
     width: 100%;
     height: 72px;
@@ -117,24 +148,36 @@ button:active {
     transform: scale(0.98);
 }
 
-/* RESULTS */
+/* ================= MESSAGE ================= */
+
+.message {
+    display: none;
+    margin-top: 20px;
+    padding: 16px;
+    border-radius: 14px;
+    background: #fff3cd;
+    color: #664d03;
+    font-size: 16px;
+}
+
+/* ================= RESULTS ================= */
+
 #results {
     display: none;
     margin-top: 30px;
 }
 
-/* RESULT HEADER */
 .result-header {
     background: white;
     border-radius: 25px;
     padding: 25px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.07);
     margin-bottom: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.07);
 }
 
 .result-header h2 {
     margin: 0 0 15px;
-    font-size: 27px;
+    font-size: 28px;
 }
 
 .result-header p {
@@ -142,7 +185,8 @@ button:active {
     font-size: 17px;
 }
 
-/* TABLE */
+/* ================= TABLE ================= */
+
 .result-table {
     width: 100%;
     border-collapse: collapse;
@@ -152,24 +196,22 @@ button:active {
     box-shadow: 0 8px 25px rgba(0,0,0,0.07);
 }
 
-.result-table th,
-.result-table td {
-    padding: 17px 14px;
-    border-bottom: 1px solid #e3e7ed;
-    text-align: left;
-}
-
 .result-table th {
     background: #1769aa;
     color: white;
+    padding: 17px 14px;
+    text-align: left;
     font-size: 17px;
 }
 
 .result-table td {
+    padding: 17px 14px;
+    border-bottom: 1px solid #e3e7ed;
     font-size: 17px;
 }
 
-/* MSCE BEST SIX */
+/* ================= MSCE BEST SIX ================= */
+
 .best-six {
     background: linear-gradient(135deg, #09244d, #1769aa);
     color: white;
@@ -190,76 +232,74 @@ button:active {
     font-size: 42px;
 }
 
-/* BACK BUTTON */
+/* ================= BACK BUTTON ================= */
+
 .back-btn {
     margin-top: 22px;
     background: #17233b;
 }
 
-/* MESSAGE */
-.message {
-    margin-top: 20px;
-    padding: 17px;
-    border-radius: 15px;
-    background: #fff3cd;
-    color: #664d03;
-    font-size: 16px;
-    display: none;
-}
+/* ================= SIMPLE FOOTER ================= */
 
-/* FOOTER */
 .footer {
     text-align: center;
-    margin: 70px 20px 40px;
+    margin: 55px 20px 35px;
     color: #68758a;
-    font-size: 16px;
-    line-height: 1.7;
+    font-size: 15px;
+    line-height: 1.8;
 }
 
 .footer strong {
     color: #17233b;
 }
 
-/* DISCLAIMER */
-.disclaimer {
-    max-width: 700px;
-    margin: 25px auto 0;
-    padding: 15px;
-    border-radius: 12px;
-    background: #fff3cd;
-    color: #665200;
-    font-size: 13px;
+/* ================= DARK MODE ================= */
+
+body.dark {
+    background: #080b10;
+    color: #f1f4fa;
 }
 
-/* DARK MODE */
-.dark {
-    background: #0d1524;
+body.dark .card {
+    background: #15181d;
+    color: #f1f4fa;
+}
+
+body.dark .result-header {
+    background: #15181d;
     color: white;
 }
 
-.dark .card,
-.dark .result-header,
-.dark .result-table {
-    background: #172236;
+body.dark .result-table {
+    background: #15181d;
     color: white;
 }
 
-.dark input,
-.dark select {
-    background: #101a2b;
+body.dark .result-table td {
+    border-bottom-color: #30343b;
+}
+
+body.dark input,
+body.dark select {
+    background: #24272c;
     color: white;
-    border-color: #39465b;
+    border-color: #454a53;
 }
 
-.dark .footer {
-    color: #aab5c7;
+body.dark input::placeholder {
+    color: #aeb4bd;
 }
 
-.dark .footer strong {
+body.dark .footer {
+    color: #aeb4bd;
+}
+
+body.dark .footer strong {
     color: white;
 }
 
-/* THEME BUTTON */
+/* ================= THEME BUTTON ================= */
+
 .theme-button {
     position: fixed;
     right: 22px;
@@ -269,7 +309,7 @@ button:active {
     border-radius: 50%;
     background: #17233b;
     color: white;
-    font-size: 25px;
+    font-size: 27px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -278,11 +318,12 @@ button:active {
     z-index: 20;
 }
 
-/* MOBILE */
+/* ================= MOBILE ================= */
+
 @media (max-width: 600px) {
 
     .header {
-        padding: 34px 15px 38px;
+        padding: 35px 15px 38px;
     }
 
     .header h1 {
@@ -300,18 +341,15 @@ button:active {
 
     .card {
         padding: 28px 20px 30px;
-        border-radius: 27px;
     }
 
     .maneb-logo {
         width: 145px;
         height: 145px;
-        margin-bottom: 18px;
     }
 
     .card h2 {
         font-size: 29px;
-        margin-bottom: 30px;
     }
 
     label {
@@ -334,45 +372,82 @@ button:active {
         padding: 14px 10px;
         font-size: 15px;
     }
+
+    .best-six strong {
+        font-size: 36px;
+    }
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
+<!-- ================= HEADER ================= -->
+
 <header class="header">
-    <h1>THE MALAWI NATION EXAMINATIONS BOARD</h1>
+
+    <h1>ABDURASHEEDRAJAB WORLD PRO</h1>
+
     <p>Modern Examination Results Portal</p>
+
 </header>
 
 
-<!-- MAIN -->
+<!-- ================= MAIN ================= -->
+
 <main class="container">
 
-    <!-- SEARCH CARD -->
     <section class="card">
 
-        <!-- REAL MANEB LOGO -->
-        <img
-            src="1788618691958.jpg"
-            alt="Malawi National Examinations Board logo"
-            class="maneb-logo"
-        >
+        <!-- MANEB LOGO -->
+
+        <div class="logo-box">
+
+            <img
+                src="1788618691958.jpg"
+                alt="Malawi National Examinations Board logo"
+                class="maneb-logo"
+            >
+
+        </div>
+
 
         <h2>Check Examination Results</h2>
 
-        <label for="examType">Examination</label>
+
+        <!-- EXAMINATION -->
+
+        <label for="examType">
+            Examination
+        </label>
 
         <select id="examType">
-            <option value="">Select examination</option>
-            <option value="PSLCE">PSLCE</option>
-            <option value="JCE">JCE</option>
-            <option value="MSCE">MSCE</option>
+
+            <option value="">
+                Select examination
+            </option>
+
+            <option value="PSLCE">
+                PSLCE
+            </option>
+
+            <option value="JCE">
+                JCE
+            </option>
+
+            <option value="MSCE">
+                MSCE
+            </option>
+
         </select>
 
 
-        <label for="examNumber">Examination Number</label>
+        <!-- EXAM NUMBER -->
+
+        <label for="examNumber">
+            Examination Number
+        </label>
 
         <input
             type="text"
@@ -381,7 +456,11 @@ button:active {
         >
 
 
-        <label for="dob">Date of Birth</label>
+        <!-- DATE OF BIRTH -->
+
+        <label for="dob">
+            Date of Birth
+        </label>
 
         <input
             type="date"
@@ -389,9 +468,12 @@ button:active {
         >
 
 
+        <!-- CHECK BUTTON -->
+
         <button onclick="checkResults()">
             CHECK RESULTS
         </button>
+
 
         <div id="message" class="message"></div>
 
@@ -399,109 +481,230 @@ button:active {
 
 
     <!-- RESULTS -->
+
     <section id="results"></section>
 
 </main>
 
 
+<!-- ================= SIMPLE FOOTER ================= -->
 
-<!-- FOOTER -->
 <footer class="footer">
 
-    <strong>
-        © 2026 ABDURASHEEDRAJAB
-    </strong>
+    <strong>© AbdurasheedRajab</strong>
 
     <br>
 
-    Designed &amp; Developed by AbdurasheedRajab
-
-    <div class="disclaimer">
-        <strong></strong><br>
-    </div>
+    Powered / Developed by AbdurasheedRajab
 
 </footer>
 
 
-<!-- DARK MODE -->
-<div class="theme-button" onclick="toggleDarkMode()">
+<!-- ================= DARK MODE BUTTON ================= -->
+
+<div
+    class="theme-button"
+    onclick="toggleDarkMode()"
+    id="themeButton"
+>
     ☾
 </div>
 
 
 <script>
 
-/* ==========================================
-   FICTIONAL DEMO RESULTS
-   ========================================== */
+/* =====================================================
+   DEMO CANDIDATES
+   ===================================================== */
 
 const candidates = {
 
-    /* PSLCE */
+    /* ================= PSLCE ================= */
+
     "PSLCE2026001": {
+
         examType: "PSLCE",
+
         name: "John Banda",
-        dob: "2011-09-19",
+
+        dob: "2012-05-15",
 
         subjects: [
-            { name: "Arts and Life Skills", mark: 78, grade: "A" },
-            { name: "Chichewa", mark: 72, grade: "A" },
-            { name: "English", mark: 81, grade: "A" },
-            { name: "Mathematics", mark: 75, grade: "A" },
-            { name: "Primary Science", mark: 69, grade: "B" },
-            { name: "Social and Religious Studies", mark: 73, grade: "A" }
+
+            {
+                name: "Arts and Life Skills",
+                mark: 78,
+                grade: "A"
+            },
+
+            {
+                name: "Chichewa",
+                mark: 72,
+                grade: "A"
+            },
+
+            {
+                name: "English",
+                mark: 81,
+                grade: "A"
+            },
+
+            {
+                name: "Mathematics",
+                mark: 75,
+                grade: "A"
+            },
+
+            {
+                name: "Primary Science",
+                mark: 69,
+                grade: "B"
+            },
+
+            {
+                name: "Social and Religious Studies",
+                mark: 73,
+                grade: "A"
+            }
+
         ]
+
     },
 
 
-    /* JCE */
+    /* ================= JCE ================= */
+
     "JCE2026001": {
+
         examType: "JCE",
+
         name: "Peter Phiri",
-        dob: "2011-09-19",
+
+        dob: "2010-08-21",
 
         subjects: [
-            { name: "Agriculture", mark: 72, grade: "A" },
-            { name: "Biology", mark: 68, grade: "B" },
-            { name: "Chichewa", mark: 75, grade: "A" },
-            { name: "English", mark: 71, grade: "A" },
-            { name: "Geography", mark: 64, grade: "B" },
-            { name: "History", mark: 70, grade: "A" },
-            { name: "Mathematics", mark: 78, grade: "A" },
-            { name: "Physics", mark: 66, grade: "B" },
-            { name: "Social Studies", mark: 73, grade: "A" }
+
+            {
+                name: "Agriculture",
+                mark: 72,
+                grade: "A"
+            },
+
+            {
+                name: "Biology",
+                mark: 68,
+                grade: "B"
+            },
+
+            {
+                name: "Chichewa",
+                mark: 75,
+                grade: "A"
+            },
+
+            {
+                name: "English",
+                mark: 71,
+                grade: "A"
+            },
+
+            {
+                name: "Geography",
+                mark: 64,
+                grade: "B"
+            },
+
+            {
+                name: "History",
+                mark: 70,
+                grade: "A"
+            },
+
+            {
+                name: "Mathematics",
+                mark: 78,
+                grade: "A"
+            },
+
+            {
+                name: "Physics",
+                mark: 66,
+                grade: "B"
+            },
+
+            {
+                name: "Social Studies",
+                mark: 73,
+                grade: "A"
+            }
+
         ]
+
     },
 
 
-    /* MSCE */
-    "MSCE2026001": {
-        examType: "MSCE",
-        name: "Mary Phiri",
-        dob: "2011-09-19",
+    /* ================= MSCE ================= */
 
-        /*
-           MSCE deliberately uses POINTS only.
-           There is NO grade field here.
-        */
+    "MSCE2026001": {
+
+        examType: "MSCE",
+
+        name: "Mary Phiri",
+
+        dob: "2008-03-20",
+
         subjects: [
-            { name: "Biology", points: 4 },
-            { name: "Chichewa", points: 5 },
-            { name: "Chemistry", points: 6 },
-            { name: "English", points: 3 },
-            { name: "Geography", points: 7 },
-            { name: "History", points: 8 },
-            { name: "Mathematics", points: 2 },
-            { name: "Physics", points: 4 }
+
+            {
+                name: "Biology",
+                points: 4
+            },
+
+            {
+                name: "Chichewa",
+                points: 5
+            },
+
+            {
+                name: "Chemistry",
+                points: 6
+            },
+
+            {
+                name: "English",
+                points: 3
+            },
+
+            {
+                name: "Geography",
+                points: 7
+            },
+
+            {
+                name: "History",
+                points: 8
+            },
+
+            {
+                name: "Mathematics",
+                points: 2
+            },
+
+            {
+                name: "Physics",
+                points: 4
+            }
+
         ]
+
     }
 
 };
 
 
-/* ==========================================
+/* =====================================================
    CHECK RESULTS
-   ========================================== */
+   ===================================================== */
 
 function checkResults() {
 
@@ -509,7 +712,9 @@ function checkResults() {
         document.getElementById("examType").value;
 
     const examNumber =
-        document.getElementById("examNumber").value
+        document
+        .getElementById("examNumber")
+        .value
         .trim()
         .toUpperCase();
 
@@ -524,14 +729,16 @@ function checkResults() {
 
 
     message.style.display = "none";
+
     results.style.display = "none";
+
     results.innerHTML = "";
 
 
     if (!examType || !examNumber || !dob) {
 
         message.textContent =
-            "Please enter the examination, examination number and date of birth.";
+            "Please enter all required information.";
 
         message.style.display = "block";
 
@@ -539,13 +746,14 @@ function checkResults() {
     }
 
 
-    const candidate = candidates[examNumber];
+    const candidate =
+        candidates[examNumber];
 
 
     if (!candidate) {
 
         message.textContent =
-            "No demo result was found for this examination number.";
+            "No demo result found for this examination number.";
 
         message.style.display = "block";
 
@@ -556,7 +764,7 @@ function checkResults() {
     if (candidate.examType !== examType) {
 
         message.textContent =
-            "The examination type does not match the examination number.";
+            "The examination type does not match.";
 
         message.style.display = "block";
 
@@ -579,43 +787,28 @@ function checkResults() {
 }
 
 
-/* ==========================================
+/* =====================================================
    DISPLAY RESULTS
-   ========================================== */
+   ===================================================== */
 
 function displayResults(candidate) {
-
-    const results =
-        document.getElementById("results");
-
-    results.style.display = "block";
-
-
-    /*
-       MSCE HAS ITS OWN DISPLAY SYSTEM.
-       It does NOT display grades.
-    */
 
     if (candidate.examType === "MSCE") {
 
         displayMSCE(candidate);
 
-        return;
+    } else {
+
+        displayStandard(candidate);
+
     }
 
-
-    /*
-       PSLCE AND JCE KEEP THE
-       MARK + GRADE FORMAT.
-    */
-
-    displayStandard(candidate);
 }
 
 
-/* ==========================================
+/* =====================================================
    PSLCE + JCE
-   ========================================== */
+   ===================================================== */
 
 function displayStandard(candidate) {
 
@@ -624,9 +817,9 @@ function displayStandard(candidate) {
 
 
     const subjects =
-        [...candidate.subjects]
-        .sort((a, b) =>
-            a.name.localeCompare(b.name)
+        [...candidate.subjects].sort(
+            (a, b) =>
+                a.name.localeCompare(b.name)
         );
 
 
@@ -636,11 +829,23 @@ function displayStandard(candidate) {
     subjects.forEach(subject => {
 
         rows += `
+
             <tr>
-                <td>${subject.name}</td>
-                <td>${subject.mark}</td>
-                <td>${subject.grade}</td>
+
+                <td>
+                    ${subject.name}
+                </td>
+
+                <td>
+                    ${subject.mark}
+                </td>
+
+                <td>
+                    ${subject.grade}
+                </td>
+
             </tr>
+
         `;
 
     });
@@ -650,7 +855,9 @@ function displayStandard(candidate) {
 
         <div class="result-header">
 
-            <h2>${candidate.examType} Results</h2>
+            <h2>
+                ${candidate.examType} Results
+            </h2>
 
             <p>
                 <strong>Candidate:</strong>
@@ -659,9 +866,7 @@ function displayStandard(candidate) {
 
             <p>
                 <strong>Examination Number:</strong>
-                ${candidate.examType === "PSLCE"
-                    ? "PSLCE2026001"
-                    : "JCE2026001"}
+                ${candidate.examType}2026001
             </p>
 
             <p>
@@ -675,15 +880,29 @@ function displayStandard(candidate) {
         <table class="result-table">
 
             <thead>
+
                 <tr>
-                    <th>Subject</th>
-                    <th>Mark</th>
-                    <th>Grade</th>
+
+                    <th>
+                        Subject
+                    </th>
+
+                    <th>
+                        Mark
+                    </th>
+
+                    <th>
+                        Grade
+                    </th>
+
                 </tr>
+
             </thead>
 
             <tbody>
+
                 ${rows}
+
             </tbody>
 
         </table>
@@ -691,17 +910,22 @@ function displayStandard(candidate) {
 
         <button
             class="back-btn"
-            onclick="goBack()">
+            onclick="goBack()"
+        >
             CHECK ANOTHER RESULT
         </button>
 
     `;
+
+
+    results.style.display = "block";
+
 }
 
 
-/* ==========================================
+/* =====================================================
    MSCE
-   ========================================== */
+   ===================================================== */
 
 function displayMSCE(candidate) {
 
@@ -709,23 +933,19 @@ function displayMSCE(candidate) {
         document.getElementById("results");
 
 
-    /*
-       ONLY subjects taken by the learner
-       are displayed.
-    */
-
     const subjects =
-        [...candidate.subjects]
-        .sort((a, b) =>
-            a.name.localeCompare(b.name)
+        [...candidate.subjects].sort(
+            (a, b) =>
+                a.name.localeCompare(b.name)
         );
 
 
     /*
-       PROTOTYPE BEST SIX CALCULATION:
-       lowest six points are selected.
-       
-       This is demo logic only and should
+       DEMO BEST SIX CALCULATION
+
+       Lowest six points are selected.
+
+       This is prototype logic and should
        be replaced with the officially
        authorized MANEB calculation.
     */
@@ -742,7 +962,8 @@ function displayMSCE(candidate) {
 
     const bestSixTotal =
         bestSix.reduce(
-            (total, points) => total + points,
+            (total, points) =>
+                total + points,
             0
         );
 
@@ -752,20 +973,22 @@ function displayMSCE(candidate) {
 
     subjects.forEach(subject => {
 
-        /*
-           IMPORTANT:
-           MSCE shows ONLY:
-           Subject | Points
-
-           NO GRADES.
-           NO BEST 6 COLUMN.
-        */
-
         rows += `
+
             <tr>
-                <td>${subject.name}</td>
-                <td><strong>${subject.points}</strong></td>
+
+                <td>
+                    ${subject.name}
+                </td>
+
+                <td>
+                    <strong>
+                        ${subject.points}
+                    </strong>
+                </td>
+
             </tr>
+
         `;
 
     });
@@ -775,7 +998,9 @@ function displayMSCE(candidate) {
 
         <div class="result-header">
 
-            <h2>MSCE Results</h2>
+            <h2>
+                MSCE Results
+            </h2>
 
             <p>
                 <strong>Candidate:</strong>
@@ -795,8 +1020,6 @@ function displayMSCE(candidate) {
         </div>
 
 
-        <!-- BEST SIX BOX -->
-
         <div class="best-six">
 
             <small>
@@ -810,19 +1033,28 @@ function displayMSCE(candidate) {
         </div>
 
 
-        <!-- MSCE SUBJECT TABLE -->
-
         <table class="result-table">
 
             <thead>
+
                 <tr>
-                    <th>Subject</th>
-                    <th>Points</th>
+
+                    <th>
+                        Subject
+                    </th>
+
+                    <th>
+                        Points
+                    </th>
+
                 </tr>
+
             </thead>
 
             <tbody>
+
                 ${rows}
+
             </tbody>
 
         </table>
@@ -830,17 +1062,22 @@ function displayMSCE(candidate) {
 
         <button
             class="back-btn"
-            onclick="goBack()">
+            onclick="goBack()"
+        >
             CHECK ANOTHER RESULT
         </button>
 
     `;
+
+
+    results.style.display = "block";
+
 }
 
 
-/* ==========================================
+/* =====================================================
    DATE FORMAT
-   ========================================== */
+   ===================================================== */
 
 function formatDate(dateString) {
 
@@ -851,8 +1088,11 @@ function formatDate(dateString) {
     const day =
         String(date.getDate()).padStart(2, "0");
 
+
     const month =
-        String(date.getMonth() + 1).padStart(2, "0");
+        String(date.getMonth() + 1)
+        .padStart(2, "0");
+
 
     const year =
         date.getFullYear();
@@ -862,38 +1102,45 @@ function formatDate(dateString) {
 }
 
 
-/* ==========================================
+/* =====================================================
    GO BACK
-   ========================================== */
+   ===================================================== */
 
 function goBack() {
 
-    document.getElementById("results").style.display =
-        "none";
+    const results =
+        document.getElementById("results");
 
-    document.getElementById("results").innerHTML =
-        "";
+
+    results.style.display = "none";
+
+    results.innerHTML = "";
+
 
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
+
 }
 
 
-/* ==========================================
+/* =====================================================
    DARK MODE
-   ========================================== */
+   ===================================================== */
 
 function toggleDarkMode() {
 
     document.body.classList.toggle("dark");
 
+
     const button =
-        document.querySelector(".theme-button");
+        document.getElementById("themeButton");
 
 
-    if (document.body.classList.contains("dark")) {
+    if (
+        document.body.classList.contains("dark")
+    ) {
 
         button.textContent = "☀";
 
@@ -902,9 +1149,10 @@ function toggleDarkMode() {
         button.textContent = "☾";
 
     }
+
 }
 
 </script>
 
 </body>
-    </html>
+</html>
