@@ -7,6 +7,7 @@
 <title>The Malawi National Examinations Board</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -20,7 +21,7 @@ body {
     transition: 0.3s;
 }
 
-/* ================= TOP HEADER ================= */
+/* ================= HEADER ================= */
 
 .header {
     background: linear-gradient(135deg, #09244d, #1769aa);
@@ -168,6 +169,7 @@ button:active {
     background: white;
     border-radius: 18px;
     overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.07);
 }
 
 .result-table th {
@@ -175,11 +177,13 @@ button:active {
     color: white;
     padding: 17px 14px;
     text-align: left;
+    font-size: 17px;
 }
 
 .result-table td {
     padding: 17px 14px;
     border-bottom: 1px solid #e3e7ed;
+    font-size: 17px;
 }
 
 /* ================= MSCE BEST SIX ================= */
@@ -200,17 +204,25 @@ button:active {
 }
 
 .best-six strong {
+    display: block;
     font-size: 42px;
+}
+
+/* ================= PRINT BUTTON ================= */
+
+.print-btn {
+    margin-top: 15px;
+    background: #1769aa;
 }
 
 /* ================= BACK BUTTON ================= */
 
 .back-btn {
-    margin-top: 22px;
+    margin-top: 15px;
     background: #17233b;
 }
 
-/* ================= BOTTOM ================= */
+/* ================= FOOTER ================= */
 
 .footer {
     text-align: center;
@@ -332,13 +344,86 @@ body.dark .footer strong {
         height: 68px;
         font-size: 20px;
     }
+
+    .result-table th,
+    .result-table td {
+        padding: 14px 10px;
+        font-size: 15px;
+    }
+
+    .best-six strong {
+        font-size: 36px;
+    }
 }
+
+/* ================= PRINT ================= */
+
+@media print {
+
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    .header {
+        background: none !important;
+        color: black !important;
+        border-bottom: 2px solid black;
+    }
+
+    .card,
+    .theme-button,
+    .back-btn,
+    .print-btn,
+    .footer {
+        display: none !important;
+    }
+
+    #results {
+        display: block !important;
+        margin: 0;
+    }
+
+    .result-header,
+    .result-table {
+        box-shadow: none !important;
+    }
+
+    .result-header {
+        background: white !important;
+        color: black !important;
+    }
+
+    .result-table {
+        background: white !important;
+        color: black !important;
+    }
+
+    .result-table th {
+        background: #eeeeee !important;
+        color: black !important;
+        border: 1px solid black;
+    }
+
+    .result-table td {
+        color: black !important;
+        border: 1px solid black;
+    }
+
+    .best-six {
+        background: white !important;
+        color: black !important;
+        border: 2px solid black;
+    }
+
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
+<!-- ================= TOP ================= -->
 
 <header class="header">
 
@@ -349,13 +434,11 @@ body.dark .footer strong {
 </header>
 
 
-<!-- ================= MAIN ================= -->
+<!-- ================= SEARCH ================= -->
 
 <main class="container">
 
     <section class="card">
-
-        <!-- MANEB LOGO -->
 
         <div class="logo-box">
 
@@ -374,8 +457,6 @@ body.dark .footer strong {
         </h2>
 
 
-        <!-- EXAMINATION NUMBER -->
-
         <label for="examNumber">
             Examination Number
         </label>
@@ -387,8 +468,6 @@ body.dark .footer strong {
         >
 
 
-        <!-- DATE OF BIRTH -->
-
         <label for="dob">
             Date of Birth
         </label>
@@ -398,8 +477,6 @@ body.dark .footer strong {
             id="dob"
         >
 
-
-        <!-- CHECK RESULTS -->
 
         <button onclick="checkResults()">
             CHECK RESULTS
@@ -413,8 +490,6 @@ body.dark .footer strong {
 
     </section>
 
-
-    <!-- RESULTS -->
 
     <section id="results"></section>
 
@@ -434,7 +509,7 @@ body.dark .footer strong {
 </footer>
 
 
-<!-- ================= DARK MODE ================= -->
+<!-- ================= THEME ================= -->
 
 <div
     class="theme-button"
@@ -452,8 +527,6 @@ body.dark .footer strong {
    ===================================================== */
 
 const candidates = {
-
-    /* ================= PSLCE ================= */
 
     "PSLCE2026001": {
 
@@ -505,8 +578,6 @@ const candidates = {
 
     },
 
-
-    /* ================= JCE ================= */
 
     "JCE2026001": {
 
@@ -576,8 +647,6 @@ const candidates = {
 
     },
 
-
-    /* ================= MSCE ================= */
 
     "MSCE2026001": {
 
@@ -778,18 +847,30 @@ function displayStandard(candidate) {
         <table class="result-table">
 
             <thead>
+
                 <tr>
                     <th>Subject</th>
                     <th>Mark</th>
                     <th>Grade</th>
                 </tr>
+
             </thead>
 
             <tbody>
+
                 ${rows}
+
             </tbody>
 
         </table>
+
+
+        <button
+            class="print-btn"
+            onclick="window.print()"
+        >
+            🖨 PRINT RESULTS
+        </button>
 
 
         <button
@@ -850,8 +931,11 @@ function displayMSCE(candidate) {
         rows += `
             <tr>
                 <td>${subject.name}</td>
+
                 <td>
-                    <strong>${subject.points}</strong>
+                    <strong>
+                        ${subject.points}
+                    </strong>
                 </td>
             </tr>
         `;
@@ -901,17 +985,29 @@ function displayMSCE(candidate) {
         <table class="result-table">
 
             <thead>
+
                 <tr>
                     <th>Subject</th>
                     <th>Points</th>
                 </tr>
+
             </thead>
 
             <tbody>
+
                 ${rows}
+
             </tbody>
 
         </table>
+
+
+        <button
+            class="print-btn"
+            onclick="window.print()"
+        >
+            🖨 PRINT RESULTS
+        </button>
 
 
         <button
@@ -974,7 +1070,7 @@ function goBack() {
 
 
 /* =====================================================
-   DARK MODE + LOGO SWITCH
+   DARK MODE + LOGO CHANGE
    ===================================================== */
 
 function toggleDarkMode() {
@@ -993,19 +1089,11 @@ function toggleDarkMode() {
 
     if (dark) {
 
-        /*
-           DARK THEME LOGO
-        */
-
         logo.src = "maneb-logo-dark.png";
 
         button.textContent = "☀";
 
     } else {
-
-        /*
-           LIGHT THEME LOGO
-        */
 
         logo.src = "1788618691958.jpg";
 
@@ -1018,4 +1106,4 @@ function toggleDarkMode() {
 </script>
 
 </body>
-    </html>
+</html>
