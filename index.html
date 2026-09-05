@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +7,6 @@
 <title>The Malawi National Examinations Board</title>
 
 <style>
-
 * {
     box-sizing: border-box;
 }
@@ -22,8 +20,7 @@ body {
     transition: 0.3s;
 }
 
-/* ================= HEADER ================= */
-
+/* HEADER */
 .header {
     background: linear-gradient(135deg, #09244d, #1769aa);
     color: white;
@@ -37,26 +34,22 @@ body {
     font-weight: 800;
 }
 
-/* ================= MAIN ================= */
-
+/* MAIN */
 .container {
     width: 92%;
     max-width: 720px;
     margin: 45px auto 0;
 }
 
-/* ================= CARD ================= */
-
+/* CARD */
 .card {
     background: white;
     border-radius: 30px;
     padding: 32px 30px 38px;
     box-shadow: 0 10px 35px rgba(0,0,0,0.08);
-    transition: 0.3s;
 }
 
-/* ================= LOGO ================= */
-
+/* LOGO */
 .logo-box {
     text-align: center;
     margin-bottom: 25px;
@@ -70,8 +63,7 @@ body {
     margin: auto;
 }
 
-/* ================= TITLE ================= */
-
+/* TITLE */
 .card h2 {
     text-align: center;
     margin: 0 0 35px;
@@ -79,8 +71,7 @@ body {
     font-weight: 800;
 }
 
-/* ================= LABELS ================= */
-
+/* LABEL */
 label {
     display: block;
     font-size: 20px;
@@ -88,8 +79,7 @@ label {
     margin-bottom: 12px;
 }
 
-/* ================= INPUTS ================= */
-
+/* INPUT */
 input {
     width: 100%;
     height: 70px;
@@ -107,8 +97,7 @@ input:focus {
     border: 2px solid #1769aa;
 }
 
-/* ================= BUTTON ================= */
-
+/* BUTTON */
 button {
     width: 100%;
     height: 72px;
@@ -125,8 +114,7 @@ button:active {
     transform: scale(0.98);
 }
 
-/* ================= MESSAGE ================= */
-
+/* MESSAGE */
 .message {
     display: none;
     margin-top: 20px;
@@ -137,13 +125,13 @@ button:active {
     font-size: 16px;
 }
 
-/* ================= RESULTS ================= */
-
+/* RESULTS */
 #results {
     display: none;
     margin-top: 30px;
 }
 
+/* RESULT HEADER */
 .result-header {
     background: white;
     border-radius: 25px;
@@ -152,18 +140,29 @@ button:active {
     box-shadow: 0 8px 25px rgba(0,0,0,0.07);
 }
 
-.result-header h2 {
-    margin: 0 0 15px;
-    font-size: 28px;
+/* LARGE BLUE NAME */
+.candidate-name {
+    color: #1769aa;
+    font-size: 34px;
+    font-weight: 900;
+    margin: 0 0 18px;
+    line-height: 1.15;
 }
 
-.result-header p {
+/* SCHOOL */
+.school-name {
+    font-size: 21px;
+    font-weight: 700;
+    margin: 0 0 18px;
+}
+
+/* RESULT INFORMATION */
+.result-info {
     margin: 8px 0;
     font-size: 17px;
 }
 
-/* ================= TABLE ================= */
-
+/* TABLE */
 .result-table {
     width: 100%;
     border-collapse: collapse;
@@ -187,8 +186,7 @@ button:active {
     font-size: 17px;
 }
 
-/* ================= MSCE BEST SIX ================= */
-
+/* MSCE BEST SIX */
 .best-six {
     background: linear-gradient(135deg, #09244d, #1769aa);
     color: white;
@@ -209,22 +207,19 @@ button:active {
     font-size: 42px;
 }
 
-/* ================= PRINT BUTTON ================= */
-
+/* PRINT */
 .print-btn {
     margin-top: 15px;
     background: #1769aa;
 }
 
-/* ================= BACK BUTTON ================= */
-
+/* BACK */
 .back-btn {
     margin-top: 15px;
     background: #17233b;
 }
 
-/* ================= FOOTER ================= */
-
+/* FOOTER */
 .footer {
     text-align: center;
     margin: 50px 20px 35px;
@@ -237,26 +232,40 @@ button:active {
     color: #17233b;
 }
 
-/* ================= DARK MODE ================= */
+/* THEME BUTTON */
+.theme-button {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: #17233b;
+    color: white;
+    font-size: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+    cursor: pointer;
+    z-index: 20;
+}
 
+/* DARK MODE */
 body.dark {
     background: #080b10;
     color: white;
 }
 
-body.dark .card {
-    background: #15181d;
-    color: white;
-}
-
-body.dark .result-header {
-    background: #15181d;
-    color: white;
-}
-
+body.dark .card,
+body.dark .result-header,
 body.dark .result-table {
     background: #15181d;
     color: white;
+}
+
+body.dark .candidate-name {
+    color: #4da3ff;
 }
 
 body.dark .result-table td {
@@ -281,28 +290,7 @@ body.dark .footer strong {
     color: white;
 }
 
-/* ================= THEME BUTTON ================= */
-
-.theme-button {
-    position: fixed;
-    right: 22px;
-    bottom: 22px;
-    width: 62px;
-    height: 62px;
-    border-radius: 50%;
-    background: #17233b;
-    color: white;
-    font-size: 27px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
-    cursor: pointer;
-    z-index: 20;
-}
-
-/* ================= MOBILE ================= */
-
+/* MOBILE */
 @media (max-width: 600px) {
 
     .header {
@@ -346,6 +334,14 @@ body.dark .footer strong {
         font-size: 20px;
     }
 
+    .candidate-name {
+        font-size: 30px;
+    }
+
+    .school-name {
+        font-size: 19px;
+    }
+
     .result-table th,
     .result-table td {
         padding: 14px 10px;
@@ -357,19 +353,12 @@ body.dark .footer strong {
     }
 }
 
-/* ================= PRINT ================= */
-
+/* PRINT */
 @media print {
 
     body {
         background: white !important;
         color: black !important;
-    }
-
-    .header {
-        background: none !important;
-        color: black !important;
-        border-bottom: 2px solid black;
     }
 
     .card,
@@ -395,6 +384,10 @@ body.dark .footer strong {
         color: black !important;
     }
 
+    .candidate-name {
+        color: black !important;
+    }
+
     .result-table {
         background: white !important;
         color: black !important;
@@ -416,102 +409,76 @@ body.dark .footer strong {
         color: black !important;
         border: 2px solid black;
     }
-
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- ================= TOP ================= -->
-
+<!-- HEADER -->
 <header class="header">
-
-    <h1>
-        THE MALAWI NATIONAL EXAMINATIONS BOARD
-    </h1>
-
+    <h1>THE MALAWI NATIONAL EXAMINATIONS BOARD</h1>
 </header>
 
 
-<!-- ================= SEARCH ================= -->
-
+<!-- SEARCH -->
 <main class="container">
 
-    <section class="card">
+<section class="card">
 
-        <div class="logo-box">
-
-            <img
-                id="manebLogo"
-                src="1788618691958.jpg"
-                alt="Malawi National Examinations Board Logo"
-                class="maneb-logo"
-            >
-
-        </div>
-
-
-        <h2>
-            Check Examination Results
-        </h2>
-
-
-        <label for="examNumber">
-            Examination Number
-        </label>
-
-        <input
-            type="text"
-            id="examNumber"
-            placeholder="Enter examination number"
+    <div class="logo-box">
+        <img
+            id="manebLogo"
+            src="1788618691958.jpg"
+            alt="Malawi National Examinations Board Logo"
+            class="maneb-logo"
         >
+    </div>
+
+    <h2>Check Examination Results</h2>
+
+    <label for="examNumber">
+        Examination Number
+    </label>
+
+    <input
+        type="text"
+        id="examNumber"
+        placeholder="Enter examination number"
+    >
+
+    <label for="dob">
+        Date of Birth
+    </label>
+
+    <input
+        type="date"
+        id="dob"
+    >
+
+    <button onclick="checkResults()">
+        CHECK RESULTS
+    </button>
+
+    <div id="message" class="message"></div>
+
+</section>
 
 
-        <label for="dob">
-            Date of Birth
-        </label>
-
-        <input
-            type="date"
-            id="dob"
-        >
-
-
-        <button onclick="checkResults()">
-            CHECK RESULTS
-        </button>
-
-
-        <div
-            id="message"
-            class="message">
-        </div>
-
-    </section>
-
-
-    <section id="results"></section>
+<section id="results"></section>
 
 </main>
 
 
-<!-- ================= BOTTOM ================= -->
-
+<!-- FOOTER -->
 <footer class="footer">
-
     <strong>© 2026 MANEB</strong>
-
     <br>
-
     Powered / Developed by Abdurasheed Rajab
-
 </footer>
 
 
-<!-- ================= THEME ================= -->
-
+<!-- THEME -->
 <div
     class="theme-button"
     id="themeButton"
@@ -524,7 +491,7 @@ body.dark .footer strong {
 <script>
 
 /* =====================================================
-   DEMO RESULTS
+   DEMO CANDIDATES
    ===================================================== */
 
 const candidates = {
@@ -534,6 +501,8 @@ const candidates = {
         examType: "PSLCE",
 
         name: "John Banda",
+
+        school: "Blantyre Primary School",
 
         dob: "2012-05-15",
 
@@ -585,6 +554,8 @@ const candidates = {
         examType: "JCE",
 
         name: "Peter Phiri",
+
+        school: "Lilongwe Secondary School",
 
         dob: "2010-08-21",
 
@@ -655,6 +626,8 @@ const candidates = {
 
         name: "Mary Phiri",
 
+        school: "Mzuzu Secondary School",
+
         dob: "2008-03-20",
 
         subjects: [
@@ -713,8 +686,7 @@ const candidates = {
 function checkResults() {
 
     const examNumber =
-        document
-        .getElementById("examNumber")
+        document.getElementById("examNumber")
         .value
         .trim()
         .toUpperCase();
@@ -775,11 +747,11 @@ function checkResults() {
 
     if (candidate.examType === "MSCE") {
 
-        displayMSCE(candidate);
+        displayMSCE(candidate, examNumber);
 
     } else {
 
-        displayStandard(candidate);
+        displayStandard(candidate, examNumber);
 
     }
 
@@ -790,7 +762,7 @@ function checkResults() {
    PSLCE + JCE
    ===================================================== */
 
-function displayStandard(candidate) {
+function displayStandard(candidate, examNumber) {
 
     const results =
         document.getElementById("results");
@@ -823,21 +795,25 @@ function displayStandard(candidate) {
 
         <div class="result-header">
 
-            <h2>
-                ${candidate.examType} Results
-            </h2>
-
-            <p>
-                <strong>Candidate:</strong>
+            <div class="candidate-name">
                 ${candidate.name}
+            </div>
+
+            <div class="school-name">
+                ${candidate.school}
+            </div>
+
+            <p class="result-info">
+                <strong>Examination:</strong>
+                ${candidate.examType}
             </p>
 
-            <p>
+            <p class="result-info">
                 <strong>Examination Number:</strong>
-                ${candidate.examType}2026001
+                ${examNumber}
             </p>
 
-            <p>
+            <p class="result-info">
                 <strong>Date of Birth:</strong>
                 ${formatDate(candidate.dob)}
             </p>
@@ -858,9 +834,7 @@ function displayStandard(candidate) {
             </thead>
 
             <tbody>
-
                 ${rows}
-
             </tbody>
 
         </table>
@@ -893,7 +867,7 @@ function displayStandard(candidate) {
    MSCE
    ===================================================== */
 
-function displayMSCE(candidate) {
+function displayMSCE(candidate, examNumber) {
 
     const results =
         document.getElementById("results");
@@ -905,6 +879,11 @@ function displayMSCE(candidate) {
                 a.name.localeCompare(b.name)
         );
 
+
+    /*
+       Prototype calculation:
+       Lower point values are treated as better.
+    */
 
     const sortedPoints =
         subjects
@@ -948,21 +927,25 @@ function displayMSCE(candidate) {
 
         <div class="result-header">
 
-            <h2>
-                MSCE Results
-            </h2>
-
-            <p>
-                <strong>Candidate:</strong>
+            <div class="candidate-name">
                 ${candidate.name}
+            </div>
+
+            <div class="school-name">
+                ${candidate.school}
+            </div>
+
+            <p class="result-info">
+                <strong>Examination:</strong>
+                MSCE
             </p>
 
-            <p>
+            <p class="result-info">
                 <strong>Examination Number:</strong>
-                MSCE2026001
+                ${examNumber}
             </p>
 
-            <p>
+            <p class="result-info">
                 <strong>Date of Birth:</strong>
                 ${formatDate(candidate.dob)}
             </p>
@@ -995,9 +978,7 @@ function displayMSCE(candidate) {
             </thead>
 
             <tbody>
-
                 ${rows}
-
             </tbody>
 
         </table>
@@ -1027,7 +1008,7 @@ function displayMSCE(candidate) {
 
 
 /* =====================================================
-   DATE
+   DATE FORMAT
    ===================================================== */
 
 function formatDate(dateString) {
@@ -1050,7 +1031,7 @@ function formatDate(dateString) {
 
 
 /* =====================================================
-   BACK
+   BACK BUTTON
    ===================================================== */
 
 function goBack() {
@@ -1071,7 +1052,7 @@ function goBack() {
 
 
 /* =====================================================
-   DARK MODE + LOGO CHANGE
+   DARK MODE
    ===================================================== */
 
 function toggleDarkMode() {
@@ -1090,13 +1071,15 @@ function toggleDarkMode() {
 
     if (dark) {
 
-        logo.src = "file_000000002628821199081fb1e2d95150.png";
+        logo.src =
+            "file_000000002628821199081fb1e2d95150.png";
 
         button.textContent = "☀";
 
     } else {
 
-        logo.src = "1788618691958.jpg";
+        logo.src =
+            "1788618691958.jpg";
 
         button.textContent = "☾";
 
