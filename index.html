@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#071a33">
 
-<title>Examination Results Portal</title>
+<title>ABDURASHEEDRAJAB WORLD PRO | Examination Results</title>
 
 <style>
 *{
@@ -15,14 +16,24 @@
 }
 
 :root{
-    --bg:#f4f7fb;
-    --card:#ffffff;
-    --text:#102033;
-    --muted:#6b7a8c;
-    --primary:#0757a8;
-    --primary2:#0b76d1;
-    --border:#e1e8f0;
-    --success:#168a52;
+    --bg:#f3f6fa;
+    --card:#fff;
+    --text:#10233d;
+    --muted:#718096;
+    --blue:#0757a8;
+    --blue2:#0b82dc;
+    --line:#e1e8f0;
+    --green:#138a50;
+    --shadow:0 12px 35px rgba(16,35,61,.09);
+}
+
+body.dark{
+    --bg:#07111f;
+    --card:#0d1d31;
+    --text:#f4f8fc;
+    --muted:#9aabc0;
+    --line:#20344c;
+    --shadow:0 12px 35px rgba(0,0,0,.25);
 }
 
 body{
@@ -31,209 +42,220 @@ body{
     min-height:100vh;
 }
 
-body.dark{
-    --bg:#07111f;
-    --card:#0e1c2e;
-    --text:#f1f6fc;
-    --muted:#9eacbd;
-    --border:#20334a;
-}
-
-/* HEADER */
-
 header{
-    background:linear-gradient(135deg,#063b78,#0874d1);
+    background:#041f3d;
     color:white;
-    padding:18px 6%;
+    padding:14px 5%;
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    position:sticky;
-    top:0;
-    z-index:100;
-    box-shadow:0 4px 20px rgba(0,0,0,.15);
+    justify-content:space-between;
 }
 
-.logo{
+.brand{
     display:flex;
     align-items:center;
     gap:12px;
 }
 
-.logo-icon{
-    width:46px;
-    height:46px;
+.logo{
+    width:45px;
+    height:45px;
     border-radius:12px;
     background:white;
     color:#0757a8;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:23px;
-    font-weight:bold;
+    font-weight:900;
 }
 
-.logo h1{
-    font-size:19px;
+.brand h1{
+    font-size:17px;
 }
 
-.logo p{
-    font-size:11px;
-    opacity:.8;
+.brand p{
+    font-size:10px;
+    color:#bcd8f2;
     margin-top:3px;
 }
 
-.header-buttons{
-    display:flex;
-    gap:8px;
-}
-
-.header-buttons button{
-    border:1px solid rgba(255,255,255,.3);
+.header-actions button{
+    border:0;
     background:rgba(255,255,255,.12);
     color:white;
-    border-radius:9px;
-    padding:9px 12px;
-    cursor:pointer;
+    width:40px;
+    height:40px;
+    border-radius:10px;
+    font-size:18px;
 }
 
-/* HERO */
-
 .hero{
-    background:linear-gradient(135deg,#0757a8,#0b82dc);
+    background:linear-gradient(135deg,#063b78,#0878d5);
     color:white;
-    padding:55px 6% 85px;
     text-align:center;
+    padding:60px 5% 95px;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 15px;
+    border-radius:30px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.25);
+    font-size:12px;
+    margin-bottom:18px;
 }
 
 .hero h2{
-    font-size:42px;
-    margin-bottom:12px;
+    font-size:clamp(32px,6vw,52px);
+    margin-bottom:15px;
 }
 
 .hero p{
     max-width:650px;
     margin:auto;
-    opacity:.9;
-    line-height:1.6;
+    line-height:1.7;
+    color:#dceeff;
 }
 
 .search-box{
-    max-width:720px;
+    max-width:850px;
     margin:30px auto 0;
     background:white;
-    padding:7px;
-    border-radius:16px;
-    display:flex;
-    box-shadow:0 15px 35px rgba(0,0,0,.2);
+    padding:20px;
+    border-radius:18px;
+    box-shadow:0 18px 45px rgba(0,0,0,.22);
+    text-align:left;
 }
 
-.search-box input{
-    flex:1;
-    border:0;
-    outline:0;
-    padding:16px;
+.field{
+    margin-bottom:15px;
+}
+
+.field label{
+    display:block;
+    color:#17314f;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+.field input,
+.field select{
+    width:100%;
+    border:1px solid #d6e0ea;
+    border-radius:11px;
+    padding:14px;
     font-size:15px;
-    color:#172536;
+    outline:none;
 }
 
-.search-box button{
+.field input:focus,
+.field select:focus{
+    border-color:#0878d5;
+}
+
+.search-button{
+    width:100%;
     border:0;
+    padding:15px;
+    border-radius:11px;
     background:#0757a8;
     color:white;
-    padding:0 25px;
-    border-radius:11px;
     font-weight:bold;
+    font-size:15px;
     cursor:pointer;
 }
 
-/* MAIN */
-
 .container{
     max-width:1150px;
-    margin:-45px auto 60px;
-    padding:0 20px;
-    position:relative;
+    margin:-50px auto 70px;
+    padding:0 18px;
 }
 
 .card{
     background:var(--card);
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:25px;
-    box-shadow:0 8px 30px rgba(0,0,0,.06);
+    border:1px solid var(--line);
+    border-radius:22px;
+    box-shadow:var(--shadow);
+    padding:27px;
 }
 
-/* EXAM BUTTONS */
+.section-title{
+    font-size:21px;
+    margin-bottom:18px;
+}
 
-.exam-selector{
+.exam-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:12px;
+    gap:13px;
 }
 
 .exam{
-    border:2px solid var(--border);
     background:var(--card);
+    border:2px solid var(--line);
     color:var(--text);
-    border-radius:14px;
-    padding:18px;
-    cursor:pointer;
+    padding:20px;
+    border-radius:15px;
     text-align:left;
-    transition:.2s;
+    cursor:pointer;
 }
 
-.exam:hover,
 .exam.active{
-    border-color:#0874d1;
-    transform:translateY(-2px);
+    border-color:#0878d5;
 }
 
-.exam strong{
-    display:block;
-    font-size:20px;
-    color:var(--primary2);
-    margin-bottom:5px;
+.exam-code{
+    font-size:23px;
+    font-weight:900;
+    color:var(--blue2);
 }
 
-.exam span{
+.exam-name{
+    margin-top:5px;
+    font-size:12px;
     color:var(--muted);
-    font-size:13px;
+    line-height:1.5;
 }
 
-/* RESULT */
+.message{
+    text-align:center;
+    color:var(--muted);
+    padding:35px 10px 10px;
+    line-height:1.6;
+}
 
 .result{
-    margin-top:25px;
     display:none;
+    margin-top:28px;
 }
 
-.student-head{
+.result-top{
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    gap:15px;
-    border-bottom:1px solid var(--border);
+    justify-content:space-between;
+    border-bottom:1px solid var(--line);
     padding-bottom:20px;
 }
 
 .student-name{
-    font-size:24px;
-    font-weight:bold;
+    font-size:25px;
+    font-weight:800;
 }
 
 .candidate{
     color:var(--muted);
-    margin-top:5px;
     font-size:13px;
+    margin-top:6px;
 }
 
-.status{
-    background:#dff7e9;
-    color:#168a52;
-    padding:9px 14px;
+.pass{
+    color:var(--green);
+    background:#dff6e9;
+    padding:9px 15px;
     border-radius:30px;
-    font-size:13px;
+    font-size:12px;
     font-weight:bold;
 }
 
@@ -241,113 +263,92 @@ header{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:12px;
-    margin:20px 0;
+    margin:20px 0 25px;
 }
 
 .stat{
-    background:var(--bg);
-    border-radius:14px;
     padding:17px;
+    border-radius:14px;
+    background:var(--bg);
 }
 
 .stat small{
     color:var(--muted);
+    font-size:11px;
 }
 
 .stat strong{
     display:block;
-    font-size:23px;
-    margin-top:6px;
+    font-size:22px;
+    margin-top:7px;
 }
 
-/* TABLE */
-
-.table-wrap{
+.table-container{
     overflow-x:auto;
 }
 
 table{
     width:100%;
     border-collapse:collapse;
-    margin-top:10px;
+    min-width:550px;
 }
 
 th,td{
     padding:15px 12px;
+    border-bottom:1px solid var(--line);
     text-align:left;
-    border-bottom:1px solid var(--border);
 }
 
 th{
-    font-size:12px;
+    font-size:11px;
     color:var(--muted);
     text-transform:uppercase;
 }
 
 .grade{
-    font-weight:bold;
-    color:var(--success);
-}
-
-.points{
+    color:var(--green);
     font-weight:bold;
 }
-
-/* BUTTONS */
 
 .actions{
     display:flex;
     gap:10px;
-    margin-top:22px;
-    flex-wrap:wrap;
+    margin-top:23px;
 }
 
 .btn{
-    border:0;
-    border-radius:10px;
     padding:12px 17px;
+    border-radius:10px;
+    border:1px solid var(--line);
+    background:var(--bg);
+    color:var(--text);
     cursor:pointer;
     font-weight:bold;
 }
 
-.primary{
+.btn.primary{
     background:#0757a8;
     color:white;
 }
 
-.secondary{
-    background:var(--bg);
-    color:var(--text);
-    border:1px solid var(--border);
-}
-
-/* MESSAGE */
-
-.message{
-    text-align:center;
-    padding:35px;
-    color:var(--muted);
-}
-
-/* FEATURES */
-
 .features{
+    margin-top:25px;
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:18px;
-    margin-top:25px;
+    gap:17px;
 }
 
 .feature{
     background:var(--card);
-    border:1px solid var(--border);
-    border-radius:17px;
-    padding:25px;
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:24px;
+    box-shadow:var(--shadow);
 }
 
 .feature-icon{
-    font-size:30px;
-    margin-bottom:15px;
+    font-size:29px;
+    margin-bottom:13px;
 }
 
 .feature h3{
@@ -356,77 +357,54 @@ th{
 
 .feature p{
     color:var(--muted);
-    font-size:14px;
-    line-height:1.6;
-}
-
-/* FOOTER */
-
-footer{
-    background:#061321;
-    color:white;
-    padding:40px 20px;
-    text-align:center;
-}
-
-footer h3{
-    font-size:18px;
-    margin-bottom:8px;
-}
-
-footer p{
-    color:#9eacbd;
     font-size:13px;
     line-height:1.7;
 }
 
-.developer{
-    margin-top:18px;
+footer{
+    background:#041321;
     color:white;
+    text-align:center;
+    padding:45px 20px;
+}
+
+.footer-brand{
+    font-size:20px;
+    font-weight:900;
+}
+
+.footer-sub{
+    color:#9eb2c8;
+    margin-top:8px;
+    font-size:13px;
+}
+
+.developer{
+    margin-top:22px;
+    padding-top:20px;
+    border-top:1px solid rgba(255,255,255,.1);
     font-weight:bold;
 }
 
-.disclaimer{
-    margin-top:15px;
-    font-size:11px;
-    color:#718297;
+.copyright{
+    margin-top:7px;
+    color:#8195aa;
+    font-size:12px;
 }
 
-/* MOBILE */
+.demo{
+    margin-top:15px;
+    color:#687d92;
+    font-size:10px;
+}
 
 @media(max-width:700px){
 
-    header{
-        padding:14px 4%;
+    .brand h1{
+        font-size:13px;
     }
 
-    .logo h1{
-        font-size:14px;
-    }
-
-    .logo-icon{
-        width:39px;
-        height:39px;
-    }
-
-    .hero{
-        padding:40px 5% 70px;
-    }
-
-    .hero h2{
-        font-size:31px;
-    }
-
-    .search-box{
-        flex-direction:column;
-        gap:7px;
-    }
-
-    .search-box button{
-        padding:14px;
-    }
-
-    .exam-selector{
+    .exam-grid{
         grid-template-columns:1fr;
     }
 
@@ -438,38 +416,36 @@ footer p{
         grid-template-columns:1fr;
     }
 
-    .student-head{
+    .result-top{
         flex-direction:column;
         align-items:flex-start;
+        gap:15px;
+    }
+
+    .actions{
+        flex-direction:column;
     }
 }
-
-/* PRINT */
 
 @media print{
 
     header,
     .hero,
-    .exam-selector,
+    .exam-grid,
     .features,
     footer,
-    .actions{
-        display:none !important;
-    }
-
-    body{
-        background:white;
+    .actions,
+    .message{
+        display:none!important;
     }
 
     .container{
         margin:0;
     }
 
-    .card{
-        box-shadow:none;
-        border:0;
+    .result{
+        display:block!important;
     }
-
 }
 </style>
 </head>
@@ -478,455 +454,486 @@ footer p{
 
 <header>
 
-    <div class="logo">
-        <div class="logo-icon">ER</div>
+<div class="brand">
 
-        <div>
-            <h1>EXAMINATION RESULTS</h1>
-            <p>Results Portal</p>
-        </div>
-    </div>
+<div class="logo">AR</div>
 
-    <div class="header-buttons">
-        <button onclick="toggleDark()">◐</button>
-    </div>
+<div>
+<h1>ABDURASHEEDRAJAB WORLD PRO</h1>
+<p>EXAMINATION RESULTS PORTAL</p>
+</div>
+
+</div>
+
+<div class="header-actions">
+<button onclick="toggleDark()">◐</button>
+</div>
 
 </header>
 
 
 <section class="hero">
 
-    <h2>Check Examination Results</h2>
+<div class="badge">🎓 EXAMINATION RESULTS PORTAL</div>
 
-    <p>
-        Access examination results quickly using your candidate
-        number. Select your examination and search below.
-    </p>
+<h2>Check Your Results</h2>
 
-    <div class="search-box">
+<p>
+Enter your examination number and date of birth
+to securely check your examination result.
+</p>
 
-        <input
-            id="searchInput"
-            type="text"
-            placeholder="Enter candidate number..."
-            onkeydown="if(event.key==='Enter') searchResult()"
-        >
 
-        <button onclick="searchResult()">
-            SEARCH
-        </button>
+<div class="search-box">
 
-    </div>
+<div class="field">
+
+<label>EXAMINATION</label>
+
+<select id="examSelect">
+
+<option value="JCE">JCE — Junior Certificate of Education</option>
+
+<option value="MSCE">MSCE — Malawi School Certificate of Education</option>
+
+<option value="PSLCE">PSLCE — Primary School Leaving Certificate</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>EXAMINATION NUMBER</label>
+
+<input
+id="candidateInput"
+type="text"
+placeholder="Enter examination number"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>DATE OF BIRTH</label>
+
+<input
+id="dobInput"
+type="date"
+>
+
+</div>
+
+
+<button class="search-button" onclick="searchResult()">
+CHECK RESULTS
+</button>
+
+</div>
 
 </section>
 
 
 <main class="container">
 
-    <div class="card">
+<div class="card">
 
-        <h2 style="margin-bottom:18px;">
-            Select Examination
-        </h2>
-
-        <div class="exam-selector">
-
-            <button class="exam active" onclick="selectExam('JCE',this)">
-                <strong>JCE</strong>
-                <span>Junior Certificate of Education</span>
-            </button>
-
-            <button class="exam" onclick="selectExam('MSCE',this)">
-                <strong>MSCE</strong>
-                <span>Malawi School Certificate of Education</span>
-            </button>
-
-            <button class="exam" onclick="selectExam('PSLCE',this)">
-                <strong>PSLCE</strong>
-                <span>Primary School Leaving Certificate</span>
-            </button>
-
-        </div>
+<h2 class="section-title">
+Examination Results
+</h2>
 
 
-        <div id="result" class="result">
+<div id="message" class="message">
 
-            <div class="student-head">
+Enter your examination number and date of birth
+above to view a demo result.
 
-                <div>
-                    <div id="studentName" class="student-name">
-                        Candidate
-                    </div>
+<br><br>
 
-                    <div id="candidateNumber" class="candidate">
-                        Candidate Number
-                    </div>
-                </div>
+Demo Examination Number:
+<b>JCE2026001</b>
 
-                <div class="status">
-                    PASS
-                </div>
+<br>
 
-            </div>
+Demo Date of Birth:
+<b>15/05/2010</b>
+
+</div>
 
 
-            <div class="summary">
+<div id="result" class="result">
 
-                <div class="stat">
-                    <small>Examination</small>
-                    <strong id="examName">JCE</strong>
-                </div>
+<div class="result-top">
 
-                <div class="stat">
-                    <small>Subjects</small>
-                    <strong id="subjectCount">8</strong>
-                </div>
+<div>
 
-                <div class="stat">
-                    <small>Total Points</small>
-                    <strong id="totalPoints">12</strong>
-                </div>
+<div id="studentName" class="student-name">
+Candidate
+</div>
 
-                <div class="stat">
-                    <small>Result</small>
-                    <strong style="color:#168a52;">
-                        PASS
-                    </strong>
-                </div>
+<div id="candidateNumber" class="candidate">
+Examination Number
+</div>
 
-            </div>
+</div>
+
+<div class="pass">
+✓ PASS
+</div>
+
+</div>
 
 
-            <h3>Subject Results</h3>
+<div class="summary">
 
-            <div class="table-wrap">
+<div class="stat">
+<small>EXAMINATION</small>
+<strong id="resultExam">JCE</strong>
+</div>
 
-                <table>
+<div class="stat">
+<small>SUBJECTS</small>
+<strong id="subjectCount">0</strong>
+</div>
 
-                    <thead>
-                        <tr>
-                            <th>Subject</th>
-                            <th>Grade</th>
-                            <th>Points</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
+<div class="stat">
+<small>TOTAL POINTS</small>
+<strong id="totalPoints">0</strong>
+</div>
 
-                    <tbody id="subjects"></tbody>
+<div class="stat">
+<small>STATUS</small>
+<strong style="color:#138a50">PASS</strong>
+</div>
 
-                </table>
-
-            </div>
-
-
-            <div class="actions">
-
-                <button
-                    class="btn primary"
-                    onclick="window.print()">
-                    🖨 Print Result Slip
-                </button>
-
-                <button
-                    class="btn secondary"
-                    onclick="clearResult()">
-                    New Search
-                </button>
-
-            </div>
-
-        </div>
+</div>
 
 
-        <div id="message" class="message">
-            Enter a candidate number above to view a demo result.
-            <br><br>
-            Try: <b>JCE2026001</b>
-        </div>
-
-    </div>
+<h3 style="margin-bottom:10px">
+Subject Results
+</h3>
 
 
-    <section class="features">
+<div class="table-container">
 
-        <div class="feature">
+<table>
 
-            <div class="feature-icon">🔎</div>
+<thead>
 
-            <h3>Quick Search</h3>
+<tr>
+<th>Subject</th>
+<th>Grade</th>
+<th>Points</th>
+<th>Status</th>
+</tr>
 
-            <p>
-                Find examination results using a candidate
-                number through a simple search interface.
-            </p>
+</thead>
 
-        </div>
+<tbody id="subjectTable"></tbody>
 
+</table>
 
-        <div class="feature">
-
-            <div class="feature-icon">📊</div>
-
-            <h3>Performance Summary</h3>
-
-            <p>
-                View subjects, grades, points and overall
-                examination performance in one place.
-            </p>
-
-        </div>
+</div>
 
 
-        <div class="feature">
+<div class="actions">
 
-            <div class="feature-icon">📄</div>
+<button class="btn primary" onclick="window.print()">
+🖨 Print Result
+</button>
 
-            <h3>Result Slip</h3>
+<button class="btn" onclick="newSearch()">
+↻ New Search
+</button>
 
-            <p>
-                Generate a clean printable result-slip layout
-                from the result page.
-            </p>
+</div>
 
-        </div>
+</div>
 
-    </section>
+</div>
+
+
+<div class="features">
+
+<div class="feature">
+
+<div class="feature-icon">🔐</div>
+
+<h3>Secure Verification</h3>
+
+<p>
+Results require both an examination number
+and date of birth for verification.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">📊</div>
+
+<h3>Clear Results</h3>
+
+<p>
+View subjects, grades, points and overall
+performance in one place.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">📄</div>
+
+<h3>Printable Results</h3>
+
+<p>
+Print a clean examination result slip.
+</p>
+
+</div>
+
+</div>
 
 </main>
 
 
 <footer>
 
-    <h3>Examination Results Portal</h3>
+<div class="footer-brand">
+ABDURASHEEDRAJAB WORLD PRO
+</div>
 
-    <p>
-        A modern examination-results platform prototype.
-    </p>
+<div class="footer-sub">
+Examination Results Portal
+</div>
 
-    <div class="developer">
-        © 2026 AbdurasheedRajab
-        <br>
-        Designed & Developed by AbdurasheedRajab
-    </div>
+<div class="developer">
+Designed & Developed by AbdurasheedRajab
+</div>
 
-    <div class="disclaimer">
-        DEMO / PROTOTYPE — Not an official examination-results system.
-    </div>
+<div class="copyright">
+© 2026 ABDURASHEEDRAJAB WORLD PRO. All rights reserved.
+</div>
+
+<div class="demo">
+DEMO / PROTOTYPE — Not an official examination-results system.
+</div>
 
 </footer>
 
 
 <script>
 
-let selectedExam = "JCE";
+let results = {
 
+"JCE2026001":{
+name:"John Banda",
+dob:"2010-05-15",
+exam:"JCE",
 
-const database = {
+subjects:[
+["English","A","1","PASS"],
+["Mathematics","A","1","PASS"],
+["Science","B","2","PASS"],
+["Social Studies","A","1","PASS"],
+["Chichewa","B","2","PASS"],
+["Computer Studies","A","1","PASS"],
+["Agriculture","B","2","PASS"],
+["Life Skills","A","1","PASS"]
+]
 
-    "JCE2026001": {
+},
 
-        name:"John Banda",
+"MSCE2026001":{
+name:"Mary Phiri",
+dob:"2008-03-20",
+exam:"MSCE",
 
-        exam:"JCE",
+subjects:[
+["English","A","1","PASS"],
+["Mathematics","B+","2","PASS"],
+["Biology","A","1","PASS"],
+["Physics","B","2","PASS"],
+["Chemistry","A","1","PASS"],
+["History","B+","2","PASS"]
+]
 
-        subjects:[
+},
 
-            ["English","A","1","PASS"],
-            ["Mathematics","A","1","PASS"],
-            ["Science","B","2","PASS"],
-            ["Social Studies","A","1","PASS"],
-            ["Chichewa","B","2","PASS"],
-            ["Computer Studies","A","1","PASS"],
-            ["Agriculture","B","2","PASS"],
-            ["Life Skills","A","1","PASS"]
+"PSLCE2026001":{
+name:"Peter Mbewe",
+dob:"2012-08-10",
+exam:"PSLCE",
 
-        ]
+subjects:[
+["English","A","1","PASS"],
+["Mathematics","A","1","PASS"],
+["Science","A","1","PASS"],
+["Social Studies","B","2","PASS"],
+["Chichewa","A","1","PASS"]
+]
 
-    },
-
-
-    "MSCE2026001": {
-
-        name:"Mary Phiri",
-
-        exam:"MSCE",
-
-        subjects:[
-
-            ["English","A","1","PASS"],
-            ["Mathematics","B+","2","PASS"],
-            ["Biology","A","1","PASS"],
-            ["Physics","B","2","PASS"],
-            ["Chemistry","A","1","PASS"],
-            ["History","B+","2","PASS"]
-
-        ]
-
-    },
-
-
-    "PSLCE2026001": {
-
-        name:"Peter Mbewe",
-
-        exam:"PSLCE",
-
-        subjects:[
-
-            ["English","A","1","PASS"],
-            ["Mathematics","A","1","PASS"],
-            ["Science","A","1","PASS"],
-            ["Social Studies","B","2","PASS"],
-            ["Chichewa","A","1","PASS"]
-
-        ]
-
-    }
+}
 
 };
 
 
-function selectExam(exam,button){
-
-    selectedExam = exam;
-
-    document
-        .querySelectorAll(".exam")
-        .forEach(x => x.classList.remove("active"));
-
-    button.classList.add("active");
-
-}
-
-
 function searchResult(){
 
-    const input =
-        document
-        .getElementById("searchInput")
-        .value
-        .trim()
-        .toUpperCase();
+let number =
+document.getElementById("candidateInput")
+.value.trim().toUpperCase();
 
-    const result =
-        database[input];
+let dob =
+document.getElementById("dobInput").value;
 
-    const resultBox =
-        document.getElementById("result");
+let exam =
+document.getElementById("examSelect").value;
 
-    const message =
-        document.getElementById("message");
+let message =
+document.getElementById("message");
 
+let result =
+document.getElementById("result");
 
-    if(!result){
-
-        resultBox.style.display="none";
-
-        message.style.display="block";
-
-        message.innerHTML =
-            "❌ No demo result found.<br><br>" +
-            "Try <b>JCE2026001</b>, " +
-            "<b>MSCE2026001</b> or " +
-            "<b>PSLCE2026001</b>.";
-
-        return;
-
-    }
+let data = results[number];
 
 
-    if(result.exam !== selectedExam){
+if(number === "" || dob === ""){
 
-        resultBox.style.display="none";
+result.style.display="none";
 
-        message.style.display="block";
+message.style.display="block";
 
-        message.innerHTML =
-            "⚠️ This candidate belongs to the " +
-            "<b>"+result.exam+"</b> examination.";
+message.innerHTML=
+"⚠️ Please enter both your examination number and date of birth.";
 
-        return;
-
-    }
-
-
-    document.getElementById("studentName")
-        .textContent=result.name;
-
-    document.getElementById("candidateNumber")
-        .textContent="Candidate Number: "+input;
-
-    document.getElementById("examName")
-        .textContent=result.exam;
-
-    document.getElementById("subjectCount")
-        .textContent=result.subjects.length;
-
-
-    let total=0;
-
-    const tbody =
-        document.getElementById("subjects");
-
-    tbody.innerHTML="";
-
-
-    result.subjects.forEach(subject=>{
-
-        total += Number(subject[2]);
-
-        tbody.innerHTML += `
-
-        <tr>
-
-            <td>${subject[0]}</td>
-
-            <td class="grade">${subject[1]}</td>
-
-            <td class="points">${subject[2]}</td>
-
-            <td>${subject[3]}</td>
-
-        </tr>
-
-        `;
-
-    });
-
-
-    document.getElementById("totalPoints")
-        .textContent=total;
-
-
-    resultBox.style.display="block";
-
-    message.style.display="none";
+return;
 
 }
 
 
-function clearResult(){
+if(!data){
 
-    document.getElementById("searchInput").value="";
+result.style.display="none";
 
-    document.getElementById("result").style.display="none";
+message.style.display="block";
 
-    document.getElementById("message").style.display="block";
+message.innerHTML=
+"❌ Examination number not found.";
 
-    document.getElementById("message").innerHTML=
-        "Enter a candidate number above to view a demo result.<br><br>" +
-        "Try: <b>JCE2026001</b>";
+return;
+
+}
+
+
+if(data.exam !== exam){
+
+result.style.display="none";
+
+message.style.display="block";
+
+message.innerHTML=
+"⚠️ The examination number does not belong to the selected examination.";
+
+return;
+
+}
+
+
+if(data.dob !== dob){
+
+result.style.display="none";
+
+message.style.display="block";
+
+message.innerHTML=
+"❌ Date of birth does not match the examination number.";
+
+return;
+
+}
+
+
+document.getElementById("studentName")
+.textContent=data.name;
+
+document.getElementById("candidateNumber")
+.textContent="Examination Number: "+number;
+
+document.getElementById("resultExam")
+.textContent=data.exam;
+
+document.getElementById("subjectCount")
+.textContent=data.subjects.length;
+
+
+let total=0;
+
+let table=document.getElementById("subjectTable");
+
+table.innerHTML="";
+
+
+data.subjects.forEach(function(subject){
+
+total += Number(subject[2]);
+
+table.innerHTML += `
+
+<tr>
+
+<td>${subject[0]}</td>
+
+<td class="grade">${subject[1]}</td>
+
+<td>${subject[2]}</td>
+
+<td>${subject[3]}</td>
+
+</tr>
+
+`;
+
+});
+
+
+document.getElementById("totalPoints")
+.textContent=total;
+
+message.style.display="none";
+
+result.style.display="block";
+
+}
+
+
+function newSearch(){
+
+document.getElementById("candidateInput").value="";
+
+document.getElementById("dobInput").value="";
+
+document.getElementById("result").style.display="none";
+
+document.getElementById("message").style.display="block";
 
 }
 
 
 function toggleDark(){
 
-    document.body.classList.toggle("dark");
+document.body.classList.toggle("dark");
 
 }
 
 </script>
 
 </body>
-  </html>
+    </html>
