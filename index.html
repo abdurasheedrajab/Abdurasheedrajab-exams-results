@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Examination Results Portal</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+:root{
+    --bg:#f4f7fb;
+    --card:#ffffff;
+    --text:#102033;
+    --muted:#6b7a8c;
+    --primary:#0757a8;
+    --primary2:#0b76d1;
+    --border:#e1e8f0;
+    --success:#168a52;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+
+body.dark{
+    --bg:#07111f;
+    --card:#0e1c2e;
+    --text:#f1f6fc;
+    --muted:#9eacbd;
+    --border:#20334a;
+}
+
+/* HEADER */
+
+header{
+    background:linear-gradient(135deg,#063b78,#0874d1);
+    color:white;
+    padding:18px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 4px 20px rgba(0,0,0,.15);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-icon{
+    width:46px;
+    height:46px;
+    border-radius:12px;
+    background:white;
+    color:#0757a8;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+    font-weight:bold;
+}
+
+.logo h1{
+    font-size:19px;
+}
+
+.logo p{
+    font-size:11px;
+    opacity:.8;
+    margin-top:3px;
+}
+
+.header-buttons{
+    display:flex;
+    gap:8px;
+}
+
+.header-buttons button{
+    border:1px solid rgba(255,255,255,.3);
+    background:rgba(255,255,255,.12);
+    color:white;
+    border-radius:9px;
+    padding:9px 12px;
+    cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+    background:linear-gradient(135deg,#0757a8,#0b82dc);
+    color:white;
+    padding:55px 6% 85px;
+    text-align:center;
+}
+
+.hero h2{
+    font-size:42px;
+    margin-bottom:12px;
+}
+
+.hero p{
+    max-width:650px;
+    margin:auto;
+    opacity:.9;
+    line-height:1.6;
+}
+
+.search-box{
+    max-width:720px;
+    margin:30px auto 0;
+    background:white;
+    padding:7px;
+    border-radius:16px;
+    display:flex;
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+}
+
+.search-box input{
+    flex:1;
+    border:0;
+    outline:0;
+    padding:16px;
+    font-size:15px;
+    color:#172536;
+}
+
+.search-box button{
+    border:0;
+    background:#0757a8;
+    color:white;
+    padding:0 25px;
+    border-radius:11px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* MAIN */
+
+.container{
+    max-width:1150px;
+    margin:-45px auto 60px;
+    padding:0 20px;
+    position:relative;
+}
+
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 8px 30px rgba(0,0,0,.06);
+}
+
+/* EXAM BUTTONS */
+
+.exam-selector{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+
+.exam{
+    border:2px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    border-radius:14px;
+    padding:18px;
+    cursor:pointer;
+    text-align:left;
+    transition:.2s;
+}
+
+.exam:hover,
+.exam.active{
+    border-color:#0874d1;
+    transform:translateY(-2px);
+}
+
+.exam strong{
+    display:block;
+    font-size:20px;
+    color:var(--primary2);
+    margin-bottom:5px;
+}
+
+.exam span{
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* RESULT */
+
+.result{
+    margin-top:25px;
+    display:none;
+}
+
+.student-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    border-bottom:1px solid var(--border);
+    padding-bottom:20px;
+}
+
+.student-name{
+    font-size:24px;
+    font-weight:bold;
+}
+
+.candidate{
+    color:var(--muted);
+    margin-top:5px;
+    font-size:13px;
+}
+
+.status{
+    background:#dff7e9;
+    color:#168a52;
+    padding:9px 14px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.summary{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin:20px 0;
+}
+
+.stat{
+    background:var(--bg);
+    border-radius:14px;
+    padding:17px;
+}
+
+.stat small{
+    color:var(--muted);
+}
+
+.stat strong{
+    display:block;
+    font-size:23px;
+    margin-top:6px;
+}
+
+/* TABLE */
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+}
+
+th,td{
+    padding:15px 12px;
+    text-align:left;
+    border-bottom:1px solid var(--border);
+}
+
+th{
+    font-size:12px;
+    color:var(--muted);
+    text-transform:uppercase;
+}
+
+.grade{
+    font-weight:bold;
+    color:var(--success);
+}
+
+.points{
+    font-weight:bold;
+}
+
+/* BUTTONS */
+
+.actions{
+    display:flex;
+    gap:10px;
+    margin-top:22px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    border:0;
+    border-radius:10px;
+    padding:12px 17px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.primary{
+    background:#0757a8;
+    color:white;
+}
+
+.secondary{
+    background:var(--bg);
+    color:var(--text);
+    border:1px solid var(--border);
+}
+
+/* MESSAGE */
+
+.message{
+    text-align:center;
+    padding:35px;
+    color:var(--muted);
+}
+
+/* FEATURES */
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-top:25px;
+}
+
+.feature{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:17px;
+    padding:25px;
+}
+
+.feature-icon{
+    font-size:30px;
+    margin-bottom:15px;
+}
+
+.feature h3{
+    margin-bottom:8px;
+}
+
+.feature p{
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.6;
+}
+
+/* FOOTER */
+
+footer{
+    background:#061321;
+    color:white;
+    padding:40px 20px;
+    text-align:center;
+}
+
+footer h3{
+    font-size:18px;
+    margin-bottom:8px;
+}
+
+footer p{
+    color:#9eacbd;
+    font-size:13px;
+    line-height:1.7;
+}
+
+.developer{
+    margin-top:18px;
+    color:white;
+    font-weight:bold;
+}
+
+.disclaimer{
+    margin-top:15px;
+    font-size:11px;
+    color:#718297;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    header{
+        padding:14px 4%;
+    }
+
+    .logo h1{
+        font-size:14px;
+    }
+
+    .logo-icon{
+        width:39px;
+        height:39px;
+    }
+
+    .hero{
+        padding:40px 5% 70px;
+    }
+
+    .hero h2{
+        font-size:31px;
+    }
+
+    .search-box{
+        flex-direction:column;
+        gap:7px;
+    }
+
+    .search-box button{
+        padding:14px;
+    }
+
+    .exam-selector{
+        grid-template-columns:1fr;
+    }
+
+    .summary{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .features{
+        grid-template-columns:1fr;
+    }
+
+    .student-head{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+
+/* PRINT */
+
+@media print{
+
+    header,
+    .hero,
+    .exam-selector,
+    .features,
+    footer,
+    .actions{
+        display:none !important;
+    }
+
+    body{
+        background:white;
+    }
+
+    .container{
+        margin:0;
+    }
+
+    .card{
+        box-shadow:none;
+        border:0;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        <div class="logo-icon">ER</div>
+
+        <div>
+            <h1>EXAMINATION RESULTS</h1>
+            <p>Results Portal</p>
+        </div>
+    </div>
+
+    <div class="header-buttons">
+        <button onclick="toggleDark()">◐</button>
+    </div>
+
+</header>
+
+
+<section class="hero">
+
+    <h2>Check Examination Results</h2>
+
+    <p>
+        Access examination results quickly using your candidate
+        number. Select your examination and search below.
+    </p>
+
+    <div class="search-box">
+
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="Enter candidate number..."
+            onkeydown="if(event.key==='Enter') searchResult()"
+        >
+
+        <button onclick="searchResult()">
+            SEARCH
+        </button>
+
+    </div>
+
+</section>
+
+
+<main class="container">
+
+    <div class="card">
+
+        <h2 style="margin-bottom:18px;">
+            Select Examination
+        </h2>
+
+        <div class="exam-selector">
+
+            <button class="exam active" onclick="selectExam('JCE',this)">
+                <strong>JCE</strong>
+                <span>Junior Certificate of Education</span>
+            </button>
+
+            <button class="exam" onclick="selectExam('MSCE',this)">
+                <strong>MSCE</strong>
+                <span>Malawi School Certificate of Education</span>
+            </button>
+
+            <button class="exam" onclick="selectExam('PSLCE',this)">
+                <strong>PSLCE</strong>
+                <span>Primary School Leaving Certificate</span>
+            </button>
+
+        </div>
+
+
+        <div id="result" class="result">
+
+            <div class="student-head">
+
+                <div>
+                    <div id="studentName" class="student-name">
+                        Candidate
+                    </div>
+
+                    <div id="candidateNumber" class="candidate">
+                        Candidate Number
+                    </div>
+                </div>
+
+                <div class="status">
+                    PASS
+                </div>
+
+            </div>
+
+
+            <div class="summary">
+
+                <div class="stat">
+                    <small>Examination</small>
+                    <strong id="examName">JCE</strong>
+                </div>
+
+                <div class="stat">
+                    <small>Subjects</small>
+                    <strong id="subjectCount">8</strong>
+                </div>
+
+                <div class="stat">
+                    <small>Total Points</small>
+                    <strong id="totalPoints">12</strong>
+                </div>
+
+                <div class="stat">
+                    <small>Result</small>
+                    <strong style="color:#168a52;">
+                        PASS
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <h3>Subject Results</h3>
+
+            <div class="table-wrap">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Grade</th>
+                            <th>Points</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="subjects"></tbody>
+
+                </table>
+
+            </div>
+
+
+            <div class="actions">
+
+                <button
+                    class="btn primary"
+                    onclick="window.print()">
+                    🖨 Print Result Slip
+                </button>
+
+                <button
+                    class="btn secondary"
+                    onclick="clearResult()">
+                    New Search
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div id="message" class="message">
+            Enter a candidate number above to view a demo result.
+            <br><br>
+            Try: <b>JCE2026001</b>
+        </div>
+
+    </div>
+
+
+    <section class="features">
+
+        <div class="feature">
+
+            <div class="feature-icon">🔎</div>
+
+            <h3>Quick Search</h3>
+
+            <p>
+                Find examination results using a candidate
+                number through a simple search interface.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">📊</div>
+
+            <h3>Performance Summary</h3>
+
+            <p>
+                View subjects, grades, points and overall
+                examination performance in one place.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">📄</div>
+
+            <h3>Result Slip</h3>
+
+            <p>
+                Generate a clean printable result-slip layout
+                from the result page.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <h3>Examination Results Portal</h3>
+
+    <p>
+        A modern examination-results platform prototype.
+    </p>
+
+    <div class="developer">
+        © 2026 AbdurasheedRajab
+        <br>
+        Designed & Developed by AbdurasheedRajab
+    </div>
+
+    <div class="disclaimer">
+        DEMO / PROTOTYPE — Not an official examination-results system.
+    </div>
+
+</footer>
+
+
+<script>
+
+let selectedExam = "JCE";
+
+
+const database = {
+
+    "JCE2026001": {
+
+        name:"John Banda",
+
+        exam:"JCE",
+
+        subjects:[
+
+            ["English","A","1","PASS"],
+            ["Mathematics","A","1","PASS"],
+            ["Science","B","2","PASS"],
+            ["Social Studies","A","1","PASS"],
+            ["Chichewa","B","2","PASS"],
+            ["Computer Studies","A","1","PASS"],
+            ["Agriculture","B","2","PASS"],
+            ["Life Skills","A","1","PASS"]
+
+        ]
+
+    },
+
+
+    "MSCE2026001": {
+
+        name:"Mary Phiri",
+
+        exam:"MSCE",
+
+        subjects:[
+
+            ["English","A","1","PASS"],
+            ["Mathematics","B+","2","PASS"],
+            ["Biology","A","1","PASS"],
+            ["Physics","B","2","PASS"],
+            ["Chemistry","A","1","PASS"],
+            ["History","B+","2","PASS"]
+
+        ]
+
+    },
+
+
+    "PSLCE2026001": {
+
+        name:"Peter Mbewe",
+
+        exam:"PSLCE",
+
+        subjects:[
+
+            ["English","A","1","PASS"],
+            ["Mathematics","A","1","PASS"],
+            ["Science","A","1","PASS"],
+            ["Social Studies","B","2","PASS"],
+            ["Chichewa","A","1","PASS"]
+
+        ]
+
+    }
+
+};
+
+
+function selectExam(exam,button){
+
+    selectedExam = exam;
+
+    document
+        .querySelectorAll(".exam")
+        .forEach(x => x.classList.remove("active"));
+
+    button.classList.add("active");
+
+}
+
+
+function searchResult(){
+
+    const input =
+        document
+        .getElementById("searchInput")
+        .value
+        .trim()
+        .toUpperCase();
+
+    const result =
+        database[input];
+
+    const resultBox =
+        document.getElementById("result");
+
+    const message =
+        document.getElementById("message");
+
+
+    if(!result){
+
+        resultBox.style.display="none";
+
+        message.style.display="block";
+
+        message.innerHTML =
+            "❌ No demo result found.<br><br>" +
+            "Try <b>JCE2026001</b>, " +
+            "<b>MSCE2026001</b> or " +
+            "<b>PSLCE2026001</b>.";
+
+        return;
+
+    }
+
+
+    if(result.exam !== selectedExam){
+
+        resultBox.style.display="none";
+
+        message.style.display="block";
+
+        message.innerHTML =
+            "⚠️ This candidate belongs to the " +
+            "<b>"+result.exam+"</b> examination.";
+
+        return;
+
+    }
+
+
+    document.getElementById("studentName")
+        .textContent=result.name;
+
+    document.getElementById("candidateNumber")
+        .textContent="Candidate Number: "+input;
+
+    document.getElementById("examName")
+        .textContent=result.exam;
+
+    document.getElementById("subjectCount")
+        .textContent=result.subjects.length;
+
+
+    let total=0;
+
+    const tbody =
+        document.getElementById("subjects");
+
+    tbody.innerHTML="";
+
+
+    result.subjects.forEach(subject=>{
+
+        total += Number(subject[2]);
+
+        tbody.innerHTML += `
+
+        <tr>
+
+            <td>${subject[0]}</td>
+
+            <td class="grade">${subject[1]}</td>
+
+            <td class="points">${subject[2]}</td>
+
+            <td>${subject[3]}</td>
+
+        </tr>
+
+        `;
+
+    });
+
+
+    document.getElementById("totalPoints")
+        .textContent=total;
+
+
+    resultBox.style.display="block";
+
+    message.style.display="none";
+
+}
+
+
+function clearResult(){
+
+    document.getElementById("searchInput").value="";
+
+    document.getElementById("result").style.display="none";
+
+    document.getElementById("message").style.display="block";
+
+    document.getElementById("message").innerHTML=
+        "Enter a candidate number above to view a demo result.<br><br>" +
+        "Try: <b>JCE2026001</b>";
+
+}
+
+
+function toggleDark(){
+
+    document.body.classList.toggle("dark");
+
+}
+
+</script>
+
+</body>
+  </html>
