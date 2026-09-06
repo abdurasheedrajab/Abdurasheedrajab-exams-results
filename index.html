@@ -30,8 +30,7 @@ body {
     padding: 38px 18px;
 }
 
-.header h1
-    {
+.header h1 {
     margin: 0;
     font-size: 30px;
     font-weight: 800;
@@ -223,6 +222,41 @@ button:active {
     font-size: 42px;
 }
 
+/* ================= OVERALL RESULT ================= */
+
+.overall-result {
+    margin-top: 22px;
+    margin-bottom: 20px;
+    padding: 22px;
+    border-radius: 20px;
+    text-align: center;
+    border: 3px solid;
+}
+
+.overall-title {
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.overall-status {
+    font-size: 34px;
+    font-weight: 900;
+}
+
+.overall-pass {
+    background: #e8f8ef;
+    color: #087f3e;
+    border-color: #198754;
+}
+
+.overall-fail {
+    background: #fdeaea;
+    color: #c82333;
+    border-color: #dc3545;
+}
+
 /* ================= BUTTONS ================= */
 
 .print-btn {
@@ -308,6 +342,16 @@ body.dark .footer strong {
     color: white;
 }
 
+body.dark .overall-pass {
+    background: #103a25;
+    color: #5ee596;
+}
+
+body.dark .overall-fail {
+    background: #421a20;
+    color: #ff737d;
+}
+
 /* ================= MOBILE ================= */
 
 @media (max-width: 600px) {
@@ -370,6 +414,10 @@ body.dark .footer strong {
     .best-six strong {
         font-size: 36px;
     }
+
+    .overall-status {
+        font-size: 29px;
+    }
 }
 
 </style>
@@ -418,6 +466,7 @@ body.dark .footer strong {
         type="text"
         id="examNumber"
         placeholder="Enter examination number"
+        autocomplete="off"
     >
 
 
@@ -493,6 +542,8 @@ const candidates = {
 
         dob: "2012-05-15",
 
+        overallStatus: "PASS",
+
         subjects: [
 
             {
@@ -547,6 +598,8 @@ const candidates = {
         school: "Lilongwe Secondary School",
 
         dob: "2010-08-21",
+
+        overallStatus: "PASS",
 
         subjects: [
 
@@ -621,6 +674,8 @@ const candidates = {
 
         dob: "2008-03-20",
 
+        overallStatus: "PASS",
+
         subjects: [
 
             {
@@ -668,6 +723,28 @@ const candidates = {
     }
 
 };
+
+
+/* =====================================================
+   HTML SECURITY
+   ===================================================== */
+
+function escapeHtml(value) {
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 
 
 /* =====================================================
@@ -741,13 +818,21 @@ function checkResults() {
     }
 
 
-    if (candidate.examType === "MSCE") {
+    if (
+        candidate.examType === "MSCE"
+    ) {
 
-        displayMSCE(candidate, examNumber);
+        displayMSCE(
+            candidate,
+            examNumber
+        );
 
     } else {
 
-        displayStandard(candidate, examNumber);
+        displayStandard(
+            candidate,
+            examNumber
+        );
 
     }
 
@@ -755,11 +840,59 @@ function checkResults() {
 
 
 /* =====================================================
-   PSLCE + JCE
-   ONLY SUBJECT + GRADE
+   OVERALL RESULT
    ===================================================== */
 
-function displayStandard(candidate, examNumber) {
+function createOverallResult(candidate) {
+
+    const status =
+        String(
+            candidate.overallStatus || ""
+        ).toUpperCase();
+
+
+    if (
+        status !== "PASS" &&
+        status !== "FAIL"
+    ) {
+        return "";
+    }
+
+
+    const className =
+        status === "PASS"
+        ? "overall-pass"
+        : "overall-fail";
+
+
+    return `
+
+        <div class="overall-result ${className}">
+
+            <div class="overall-title">
+                OVERALL RESULTS
+            </div>
+
+            <div class="overall-status">
+                ${status}
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   PSLCE + JCE
+   SUBJECT + GRADE ONLY
+   ===================================================== */
+
+function displayStandard(
+    candidate,
+    examNumber
+) {
 
     const results =
         document
@@ -783,12 +916,12 @@ function displayStandard(candidate, examNumber) {
             <tr>
 
                 <td>
-                    ${subject.name}
+                    ${escapeHtml(subject.name)}
                 </td>
 
                 <td>
                     <strong>
-                        ${subject.grade}
+                        ${escapeHtml(subject.grade)}
                     </strong>
                 </td>
 
@@ -804,11 +937,11 @@ function displayStandard(candidate, examNumber) {
         <div class="result-header">
 
             <div class="candidate-name">
-                ${candidate.name}
+                ${escapeHtml(candidate.name)}
             </div>
 
             <div class="school-name">
-                ${candidate.school}
+                ${escapeHtml(candidate.school)}
             </div>
 
             <p class="result-info">
@@ -817,7 +950,7 @@ function displayStandard(candidate, examNumber) {
                     Examination:
                 </strong>
 
-                ${candidate.examType}
+                ${escapeHtml(candidate.examType)}
 
             </p>
 
@@ -827,7 +960,7 @@ function displayStandard(candidate, examNumber) {
                     Examination Number:
                 </strong>
 
-                ${examNumber}
+                ${escapeHtml(examNumber)}
 
             </p>
 
@@ -871,9 +1004,12 @@ function displayStandard(candidate, examNumber) {
         </table>
 
 
+        ${createOverallResult(candidate)}
+
+
         <button
             class="print-btn"
-            onclick="printCertificate('${examNumber}')"
+            onclick="printCertificate('${escapeHtml(examNumber)}')"
         >
             🖨 PRINT RESULTS
         </button>
@@ -899,7 +1035,10 @@ function displayStandard(candidate, examNumber) {
    SUBJECT + POINTS
    ===================================================== */
 
-function displayMSCE(candidate, examNumber) {
+function displayMSCE(
+    candidate,
+    examNumber
+) {
 
     const results =
         document
@@ -915,8 +1054,18 @@ function displayMSCE(candidate, examNumber) {
 
     const sortedPoints =
         subjects
-        .map(subject => subject.points)
-        .sort((a, b) => a - b);
+        .map(
+            subject =>
+                Number(subject.points)
+        )
+        .filter(
+            points =>
+                !Number.isNaN(points)
+        )
+        .sort(
+            (a, b) =>
+                a - b
+        );
 
 
     const bestSix =
@@ -941,12 +1090,12 @@ function displayMSCE(candidate, examNumber) {
             <tr>
 
                 <td>
-                    ${subject.name}
+                    ${escapeHtml(subject.name)}
                 </td>
 
                 <td>
                     <strong>
-                        ${subject.points}
+                        ${escapeHtml(subject.points)}
                     </strong>
                 </td>
 
@@ -962,11 +1111,11 @@ function displayMSCE(candidate, examNumber) {
         <div class="result-header">
 
             <div class="candidate-name">
-                ${candidate.name}
+                ${escapeHtml(candidate.name)}
             </div>
 
             <div class="school-name">
-                ${candidate.school}
+                ${escapeHtml(candidate.school)}
             </div>
 
             <p class="result-info">
@@ -985,7 +1134,7 @@ function displayMSCE(candidate, examNumber) {
                     Examination Number:
                 </strong>
 
-                ${examNumber}
+                ${escapeHtml(examNumber)}
 
             </p>
 
@@ -1042,9 +1191,12 @@ function displayMSCE(candidate, examNumber) {
         </table>
 
 
+        ${createOverallResult(candidate)}
+
+
         <button
             class="print-btn"
-            onclick="printCertificate('${examNumber}')"
+            onclick="printCertificate('${escapeHtml(examNumber)}')"
         >
             🖨 PRINT RESULTS
         </button>
@@ -1066,7 +1218,7 @@ function displayMSCE(candidate, examNumber) {
 
 
 /* =====================================================
-   PRINT CERTIFICATE
+   PRINT CERTIFICATE-STYLE RESULTS
    ===================================================== */
 
 function printCertificate(examNumber) {
@@ -1092,7 +1244,9 @@ function printCertificate(examNumber) {
 
     /* ================= PSLCE + JCE ================= */
 
-    if (candidate.examType !== "MSCE") {
+    if (
+        candidate.examType !== "MSCE"
+    ) {
 
         subjects.forEach(subject => {
 
@@ -1101,11 +1255,11 @@ function printCertificate(examNumber) {
                 <tr>
 
                     <td>
-                        ${subject.name}
+                        ${escapeHtml(subject.name)}
                     </td>
 
-                    <td>
-                        ${subject.grade}
+                    <td class="grade-cell">
+                        ${escapeHtml(subject.grade)}
                     </td>
 
                 </tr>
@@ -1128,11 +1282,11 @@ function printCertificate(examNumber) {
                 <tr>
 
                     <td>
-                        ${subject.name}
+                        ${escapeHtml(subject.name)}
                     </td>
 
-                    <td>
-                        ${subject.points}
+                    <td class="points-cell">
+                        ${escapeHtml(subject.points)}
                     </td>
 
                 </tr>
@@ -1144,35 +1298,91 @@ function printCertificate(examNumber) {
     }
 
 
+    /* ================= BEST SIX ================= */
+
     let bestSixHTML = "";
 
 
-    if (candidate.examType === "MSCE") {
+    if (
+        candidate.examType === "MSCE"
+    ) {
 
         const points =
             subjects
-            .map(subject => subject.points)
-            .sort((a, b) => a - b)
+            .map(
+                subject =>
+                    Number(subject.points)
+            )
+            .filter(
+                point =>
+                    !Number.isNaN(point)
+            )
+            .sort(
+                (a, b) =>
+                    a - b
+            )
             .slice(0, 6);
 
 
         const total =
             points.reduce(
-                (a, b) => a + b,
+                (a, b) =>
+                    a + b,
                 0
             );
 
 
         bestSixHTML = `
 
-            <div class="best-six">
+            <div class="best-six-print">
 
-                <span>
+                <div>
                     BEST SIX SUBJECT TOTAL
-                </span>
+                </div>
 
                 <strong>
                     ${total} POINTS
+                </strong>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* ================= OVERALL ================= */
+
+    const overall =
+        String(
+            candidate.overallStatus || ""
+        ).toUpperCase();
+
+
+    let overallHTML = "";
+
+
+    if (
+        overall === "PASS" ||
+        overall === "FAIL"
+    ) {
+
+        const overallClass =
+            overall === "PASS"
+            ? "pass-print"
+            : "fail-print";
+
+
+        overallHTML = `
+
+            <div class="overall-print ${overallClass}">
+
+                <small>
+                    OVERALL RESULTS
+                </small>
+
+                <strong>
+                    ${overall}
                 </strong>
 
             </div>
@@ -1211,160 +1421,309 @@ function printCertificate(examNumber) {
 <meta charset="UTF-8">
 
 <title>
-${candidate.examType} Examination Results
+${escapeHtml(candidate.examType)}
+Examination Results
 </title>
+
 
 <style>
 
 @page {
-    size: A4;
-    margin: 12mm;
+    size: A4 portrait;
+    margin: 7mm;
 }
+
 
 * {
     box-sizing: border-box;
 }
 
+
+html,
 body {
 
     margin: 0;
+    padding: 0;
 
     background: white;
 
-    color: #111;
+}
+
+
+body {
 
     font-family:
         Georgia,
         "Times New Roman",
         serif;
 
+    color: #17233b;
+
 }
+
+
+/* ================= CERTIFICATE ================= */
 
 .certificate {
 
+    position: relative;
+
     width: 100%;
 
-    min-height: 270mm;
+    min-height: 282mm;
 
-    border: 4px solid #17233b;
+    padding: 8mm;
 
-    padding: 14mm;
+    border: 5px solid #09244d;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #fffdf5 50%,
+            #ffffff 100%
+        );
 
 }
 
-.inner-border {
+
+.certificate::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 4mm;
+
+    border: 2px solid #c9a227;
+
+    pointer-events: none;
+
+}
+
+
+.certificate::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 7mm;
 
     border: 1px solid #1769aa;
 
-    min-height: 238mm;
-
-    padding: 10mm;
+    pointer-events: none;
 
 }
+
+
+/* ================= FLOWERS ================= */
+
+.flower {
+
+    position: absolute;
+
+    z-index: 10;
+
+    color: #c9a227;
+
+    font-size: 38px;
+
+    line-height: 1;
+
+}
+
+
+.flower.tl {
+
+    top: 8mm;
+    left: 9mm;
+
+}
+
+
+.flower.tr {
+
+    top: 8mm;
+    right: 9mm;
+
+}
+
+
+.flower.bl {
+
+    bottom: 8mm;
+    left: 9mm;
+
+}
+
+
+.flower.br {
+
+    bottom: 8mm;
+    right: 9mm;
+
+}
+
+
+/* ================= CONTENT ================= */
+
+.content {
+
+    position: relative;
+
+    z-index: 5;
+
+    padding: 8mm;
+
+}
+
+
+/* ================= HEADER ================= */
 
 .header-area {
 
     text-align: center;
 
-    border-bottom: 2px solid #17233b;
+    border-bottom: 2px solid #c9a227;
 
-    padding-bottom: 7mm;
+    padding-bottom: 4mm;
 
 }
+
+
+.logo {
+
+    width: 72px;
+
+    height: 72px;
+
+    object-fit: contain;
+
+    display: block;
+
+    margin: 0 auto 3mm;
+
+}
+
 
 .board-title {
 
     font-family: Arial, sans-serif;
 
-    font-size: 22px;
+    font-size: 18px;
 
     font-weight: 900;
+
+    color: #09244d;
+
+    letter-spacing: .6px;
+
+}
+
+
+.document-title {
+
+    margin-top: 3mm;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 25px;
+
+    font-weight: 900;
+
+    color: #1769aa;
 
     letter-spacing: 1px;
 
 }
 
-.document-title {
-
-    margin-top: 7mm;
-
-    font-size: 28px;
-
-    font-weight: bold;
-
-    color: #1769aa;
-
-}
 
 .subtitle {
 
-    margin-top: 3mm;
+    margin-top: 2mm;
 
-    font-size: 15px;
+    font-size: 13px;
+
+    color: #555;
 
 }
+
+
+/* ================= CANDIDATE ================= */
 
 .candidate-section {
 
-    margin-top: 9mm;
-
     text-align: center;
 
+    margin-top: 5mm;
+
 }
+
 
 .candidate-name {
 
     font-family: Arial, sans-serif;
 
-    font-size: 32px;
+    font-size: 28px;
 
     font-weight: 900;
 
-    color: #1769aa;
+    color: #0b5ed7;
 
     text-transform: uppercase;
 
 }
 
+
 .school {
 
-    margin-top: 4mm;
+    margin-top: 2mm;
 
-    font-size: 20px;
+    font-size: 17px;
 
     font-weight: bold;
 
+    color: #17233b;
+
 }
+
+
+/* ================= DETAILS ================= */
 
 .details {
 
-    margin-top: 8mm;
+    margin-top: 5mm;
 
     display: grid;
 
     grid-template-columns: 1fr 1fr;
 
-    gap: 5mm;
+    gap: 3mm;
 
 }
+
 
 .detail {
 
-    border: 1px solid #999;
+    border: 1px solid #c9a227;
 
-    padding: 4mm;
+    border-radius: 5px;
 
-    text-align: left;
+    padding: 3mm;
 
-    font-family: Arial, sans-serif;
+    background: #fffdf5;
 
 }
 
+
 .detail-label {
 
-    font-size: 11px;
+    font-family: Arial, sans-serif;
 
-    color: #555;
+    font-size: 9px;
+
+    color: #68758a;
 
     text-transform: uppercase;
 
@@ -1372,69 +1731,85 @@ body {
 
 }
 
+
 .detail-value {
 
-    margin-top: 2mm;
-
-    font-size: 16px;
-
-    font-weight: bold;
-
-}
-
-.best-six {
-
-    margin: 8mm auto;
-
-    width: 75%;
-
-    text-align: center;
-
-    border: 2px solid #1769aa;
-
-    padding: 5mm;
-
-}
-
-.best-six span {
-
-    display: block;
+    margin-top: 1mm;
 
     font-family: Arial, sans-serif;
 
-    font-size: 12px;
+    font-size: 13px;
 
     font-weight: bold;
 
 }
 
-.best-six strong {
 
-    display: block;
+/* ================= BEST SIX ================= */
 
-    font-size: 28px;
+.best-six-print {
 
-    color: #1769aa;
+    margin: 5mm auto;
 
-    margin-top: 2mm;
-
-}
-
-.results-title {
-
-    margin-top: 8mm;
+    width: 60%;
 
     text-align: center;
 
-    font-size: 18px;
+    border: 2px solid #c9a227;
+
+    border-radius: 7px;
+
+    padding: 3mm;
+
+    background: #fff9df;
+
+}
+
+
+.best-six-print div {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
 
     font-weight: bold;
 
-    border-bottom: 1px solid #999;
-
-    padding-bottom: 3mm;
+    color: #09244d;
 
 }
+
+
+.best-six-print strong {
+
+    display: block;
+
+    margin-top: 1mm;
+
+    font-size: 23px;
+
+    color: #1769aa;
+
+}
+
+
+/* ================= RESULTS ================= */
+
+.results-title {
+
+    margin-top: 4mm;
+
+    text-align: center;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 900;
+
+    color: #09244d;
+
+}
+
 
 table {
 
@@ -1442,57 +1817,143 @@ table {
 
     border-collapse: collapse;
 
-    margin-top: 5mm;
+    margin-top: 3mm;
 
     font-family: Arial, sans-serif;
 
+    font-size: 12px;
+
 }
+
 
 th {
 
-    background: #17233b;
+    background: #09244d;
 
     color: white;
 
-    padding: 4mm;
+    padding: 2.5mm;
 
-    border: 1px solid #17233b;
+    border: 1px solid #09244d;
 
     text-align: left;
 
 }
 
+
 td {
 
-    padding: 3.5mm;
+    padding: 2.2mm;
 
-    border: 1px solid #777;
+    border: 1px solid #b9c0ca;
 
 }
 
+
+.grade-cell,
+.points-cell {
+
+    font-weight: 900;
+
+}
+
+
+/* ================= OVERALL ================= */
+
+.overall-print {
+
+    width: 50%;
+
+    margin: 4mm auto;
+
+    text-align: center;
+
+    padding: 3mm;
+
+    border-radius: 7px;
+
+    font-family: Arial, sans-serif;
+
+}
+
+
+.pass-print {
+
+    background: #e8f8ef;
+
+    border: 2px solid #198754;
+
+    color: #087f3e;
+
+}
+
+
+.fail-print {
+
+    background: #fdeaea;
+
+    border: 2px solid #dc3545;
+
+    color: #c82333;
+
+}
+
+
+.overall-print small {
+
+    display: block;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+}
+
+
+.overall-print strong {
+
+    display: block;
+
+    margin-top: 1mm;
+
+    font-size: 20px;
+
+}
+
+
+/* ================= FOOTER ================= */
+
 .footer-area {
 
-    margin-top: 12mm;
+    margin-top: 5mm;
 
     text-align: center;
 
     font-family: Arial, sans-serif;
 
-    font-size: 11px;
+    font-size: 9px;
 
-    line-height: 1.8;
+    line-height: 1.6;
+
+    color: #555;
+
+}
+
+
+.footer-line {
+
+    height: 1px;
+
+    width: 65%;
+
+    margin: 3mm auto;
+
+    background: #c9a227;
 
 }
 
-.demo-mark {
 
-    margin-top: 4mm;
-
-    font-size: 10px;
-
-    color: #777;
-
-}
+/* ================= PRINT BUTTON ================= */
 
 .print-control {
 
@@ -1502,22 +1963,37 @@ td {
 
 }
 
+
 .print-control button {
 
-    padding: 12px 25px;
+    padding: 12px 28px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #09244d;
+
+    color: white;
 
     font-size: 16px;
+
+    font-weight: bold;
 
     cursor: pointer;
 
 }
 
+
 @media print {
 
     .print-control {
-
         display: none;
+    }
 
+    .certificate {
+        min-height: 282mm;
+        page-break-inside: avoid;
     }
 
 }
@@ -1532,195 +2008,224 @@ td {
 
 <div class="certificate">
 
-<div class="inner-border">
 
+    <div class="flower tl">✿</div>
 
-<div class="header-area">
+    <div class="flower tr">✿</div>
 
-<div class="board-title">
+    <div class="flower bl">✿</div>
 
-THE MALAWI NATIONAL EXAMINATIONS BOARD
+    <div class="flower br">✿</div>
 
-</div>
 
+    <div class="content">
 
-<div class="document-title">
 
-EXAMINATION RESULTS
+        <div class="header-area">
 
-</div>
 
+            <img
+                src="1788618691958.jpg"
+                class="logo"
+                alt="MANEB Logo"
+            >
 
-<div class="subtitle">
 
-${candidate.examType} Examination
+            <div class="board-title">
 
-</div>
+                THE MALAWI NATIONAL EXAMINATIONS BOARD
 
-</div>
+            </div>
 
 
-<div class="candidate-section">
+            <div class="document-title">
 
-<div class="candidate-name">
+                EXAMINATION RESULTS
 
-${candidate.name}
+            </div>
 
-</div>
 
+            <div class="subtitle">
 
-<div class="school">
+                ${escapeHtml(candidate.examType)}
+                Examination
 
-${candidate.school}
+            </div>
 
-</div>
 
-</div>
+        </div>
 
 
-<div class="details">
+        <div class="candidate-section">
 
 
-<div class="detail">
+            <div class="candidate-name">
 
-<div class="detail-label">
+                ${escapeHtml(candidate.name)}
 
-Examination Number
+            </div>
 
-</div>
 
-<div class="detail-value">
+            <div class="school">
 
-${examNumber}
+                ${escapeHtml(candidate.school)}
 
-</div>
+            </div>
 
-</div>
 
+        </div>
 
-<div class="detail">
 
-<div class="detail-label">
+        <div class="details">
 
-Date of Birth
 
-</div>
+            <div class="detail">
 
-<div class="detail-value">
+                <div class="detail-label">
 
-${formatDate(candidate.dob)}
+                    Examination Number
 
-</div>
+                </div>
 
-</div>
+                <div class="detail-value">
 
+                    ${escapeHtml(examNumber)}
 
-<div class="detail">
+                </div>
 
-<div class="detail-label">
+            </div>
 
-Examination
 
-</div>
+            <div class="detail">
 
-<div class="detail-value">
+                <div class="detail-label">
 
-${candidate.examType}
+                    Date of Birth
 
-</div>
+                </div>
 
-</div>
+                <div class="detail-value">
 
+                    ${formatDate(candidate.dob)}
 
-<div class="detail">
+                </div>
 
-<div class="detail-label">
+            </div>
 
-School
 
-</div>
+            <div class="detail">
 
-<div class="detail-value">
+                <div class="detail-label">
 
-${candidate.school}
+                    Examination
 
-</div>
+                </div>
 
-</div>
+                <div class="detail-value">
 
+                    ${escapeHtml(candidate.examType)}
 
-</div>
+                </div>
 
+            </div>
 
-${bestSixHTML}
 
+            <div class="detail">
 
-<div class="results-title">
+                <div class="detail-label">
 
-SUBJECT RESULTS
+                    Examination Year
 
-</div>
+                </div>
 
+                <div class="detail-value">
 
-<table>
+                    2026
 
-<thead>
+                </div>
 
-<tr>
+            </div>
 
-<th>
-Subject
-</th>
 
-${
-    candidate.examType === "MSCE"
-    ? "<th>Points</th>"
-    : "<th>Grade</th>"
-}
+        </div>
 
-</tr>
 
-</thead>
+        ${bestSixHTML}
 
 
-<tbody>
+        <div class="results-title">
 
-${resultRows}
+            SUBJECT RESULTS
 
-</tbody>
+        </div>
 
-</table>
 
+        <table>
 
-<div class="footer-area">
 
-<div>
-© 2026 MANEB
-</div>
+            <thead>
 
-<div>
-Powered / Developed by Abdurasheed Rajab
-</div>
+                <tr>
 
-<div class="demo-mark">
-Prototype examination-results presentation
-</div>
+                    <th>
+                        Subject
+                    </th>
 
-</div>
 
+                    ${
+                        candidate.examType === "MSCE"
+                        ? "<th>Points</th>"
+                        : "<th>Grade</th>"
+                    }
 
-</div>
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                ${resultRows}
+
+            </tbody>
+
+
+        </table>
+
+
+        ${overallHTML}
+
+
+        <div class="footer-area">
+
+
+            <div class="footer-line"></div>
+
+
+            <div>
+                © 2026 MANEB
+            </div>
+
+
+            <div>
+                Powered / Developed by Abdurasheed Rajab
+            </div>
+
+
+        </div>
+
+
+    </div>
+
 
 </div>
 
 
 <div class="print-control">
 
-<button onclick="window.print()">
-
-PRINT THIS PAGE
-
-</button>
+    <button onclick="window.print()">
+        🖨 PRINT THIS PAGE
+    </button>
 
 </div>
 
@@ -1802,11 +2307,17 @@ function goBack() {
 
 function toggleDarkMode() {
 
-    document.body.classList.toggle("dark");
+    document
+        .body
+        .classList
+        .toggle("dark");
 
 
     const dark =
-        document.body.classList.contains("dark");
+        document
+        .body
+        .classList
+        .contains("dark");
 
 
     const logo =
@@ -1822,7 +2333,8 @@ function toggleDarkMode() {
         logo.src =
             "file_000000002628821199081fb1e2d95150.png";
 
-        button.textContent = "☀";
+        button.textContent =
+            "☀";
 
     }
 
@@ -1831,7 +2343,8 @@ function toggleDarkMode() {
         logo.src =
             "1788618691958.jpg";
 
-        button.textContent = "☾";
+        button.textContent =
+            "☾";
 
     }
 
