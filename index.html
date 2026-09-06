@@ -263,11 +263,6 @@ button:active {
     margin-top: 15px;
 }
 
-.back-btn {
-    margin-top: 15px;
-    background: #17233b;
-}
-
 /* ================= FOOTER ================= */
 
 .footer {
@@ -1014,14 +1009,6 @@ function displayStandard(
             🖨 PRINT RESULTS
         </button>
 
-
-        <button
-            class="back-btn"
-            onclick="goBack()"
-        >
-            CHECK ANOTHER RESULT
-        </button>
-
     `;
 
 
@@ -1200,6 +1187,10 @@ function displayMSCE(
         >
             🖨 PRINT RESULTS
         </button>
+
+    `;
+
+    results.style.display = "block";
 
 }
 
@@ -2258,32 +2249,6 @@ function formatDate(dateString) {
 
 
     return `${day}/${month}/${year}`;
-
-}
-
-
-/* =====================================================
-   BACK
-   ===================================================== */
-
-function goBack() {
-
-    const results =
-        document.getElementById("results");
-
-
-    results.style.display = "none";
-
-    results.innerHTML = "";
-
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
-    });
 
 }
 
